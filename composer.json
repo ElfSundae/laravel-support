@@ -1,0 +1,53 @@
+{
+    "name": "elfsundae/laravel-support",
+    "type": "library",
+    "description": "",
+    "keywords": ["laravel-support"],
+    "homepage": "https://github.com/elfsundae/laravel-support",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elf Sundae",
+            "email": "elf.sundae@gmail.com",
+            "homepage": "https://0x123.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/console": "5.*",
+        "illuminate/support": "5.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "~0.9.4",
+        "phpunit/phpunit": "~5.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "ElfSundae\\Laravel\\Support\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ElfSundae\\Laravel\\Support\\Test\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "ElfSundae\\Laravel\\Support\\SupportServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
