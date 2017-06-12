@@ -45,7 +45,7 @@ class SupportServiceProvider extends ServiceProvider
     protected function registerForConsole()
     {
         $this->publishes([
-            __DIR__.'/../config/support.php' => config_path('support.php')
+            __DIR__.'/../config/support.php' => config_path('support.php'),
         ], 'support');
     }
 
