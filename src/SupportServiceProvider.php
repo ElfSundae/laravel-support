@@ -11,7 +11,7 @@ class SupportServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Bootstrap the service provider.
@@ -46,7 +46,7 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/support.php' => config_path('support.php'),
-        ], 'support');
+        ], 'laravel-support');
     }
 
     /**
