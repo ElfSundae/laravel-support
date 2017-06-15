@@ -11,7 +11,7 @@ class Int2stringCharacters extends Command
      *
      * @var string
      */
-    protected $signature = 'int2string:characters
+    protected $signature = 'support:int2string-characters
         {--show : Display the characters instead of modifying the config file}
         {--c|characters=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ : Generate with custom characters}';
 

@@ -3,52 +3,70 @@
 namespace ElfSundae\Laravel\Support;
 
 use Illuminate\Support\ServiceProvider;
-use ElfSundae\Laravel\Api\ApiServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
-        array_map([$this->app, 'register'], $this->getServiceProviders());
+        $this->mergeConfigFrom(__DIR__.'/../config/support.php', 'support');
+
+        $this->registerServices();
+
+        if ($this->app->isLocal()) {
+            $this->registerForLocalEnvironment();
+        }
+
+        if ($this->app->runningInConsole()) {
+            $this->registerForConsole();
+        }
+    }
+
+    public function registerServices()
+    {
+        $this->app->register(\ElfSundae\Laravel\Api\ApiServiceProvider::class);
+        $this->app->register(\Intervention\Image\ImageServiceProviderLaravel5::class);
+        $this->app->register(\NotificationChannels\BearyChat\BearyChatServiceProvider::class);
+        $this->app->register(\SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
+        $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
+        $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
+        $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
+        $this->app->register(\ElfSundae\Laravel\Support\Datatables\DatatablesServiceProvider::class);
+        $this->app->register(Providers\AppConfigServiceProvider::class);
+        $this->app->register(Providers\CaptchaServiceProvider::class);
+        $this->app->register(Providers\ClientServiceProvider::class);
+        $this->app->register(Providers\OptimusServiceProvider::class);
+        $this->app->register(Providers\RoutingServiceProvider::class);
+        $this->app->register(Providers\XgPusherServiceProvider::class);
+
+        Helper::aliasFacade('Captcha', \Mews\Captcha\Facades\Captcha::class);
+        Helper::aliasFacade('Image', \Intervention\Image\Facades\Image::class);
+        Helper::aliasFacade('Qrcode', \SimpleSoftwareIO\QrCode\Facades\QrCode::class);
+    }
+
+    public function registerForLocalEnvironment()
+    {
+        $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
     }
 
     /**
-     * Get service providers to be registered.
+     * Register for console.
      *
-     * @return array
+     * @return void
      */
-    protected function getServiceProviders()
+    protected function registerForConsole()
     {
-        $providers = [
-            ApiServiceProvider::class,
-            Providers\AppConfigServiceProvider::class,
-            Providers\CaptchaServiceProvider::class,
-            Providers\ClientServiceProvider::class,
-            Providers\OptimusServiceProvider::class,
-            Providers\RoutingServiceProvider::class,
-            Providers\XgPusherServiceProvider::class,
-        ];
+        $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
+        $this->app->register(\Spatie\Backup\BackupServiceProvider::class);
+        $this->app->register(Providers\ConsoleServiceProvider::class);
 
-        if ($this->app->runningInConsole()) {
-            array_push(
-                $providers,
-                Providers\ConsoleServiceProvider::class,
-                \Laravel\Tinker\TinkerServiceProvider::class,
-                \Spatie\Backup\BackupServiceProvider::class
-            );
-        }
-
-        if ($this->app->isLocal()) {
-            array_push(
-                $providers,
-                \Barryvdh\Debugbar\ServiceProvider::class,
-                \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
-            );
-        }
-
-        return $providers;
+        $this->publishes([
+            __DIR__.'/../config/support.php' => config_path('support.php'),
+        ], 'laravel-support');
     }
 }

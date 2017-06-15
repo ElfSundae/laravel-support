@@ -15,7 +15,7 @@ class Helper
      * @param  string  $class
      * @return void
      */
-    protected function aliasFacade($facade, $class)
+    public static function aliasFacade($facade, $class)
     {
         AliasLoader::getInstance()->alias($facade, $class);
     }
