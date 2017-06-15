@@ -3,10 +3,23 @@
 namespace ElfSundae\Laravel\Support;
 
 use Illuminate\Http\Request;
+use Illuminate\Foundation\AliasLoader;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
 class Helper
 {
+    /**
+     * Create alias for the facade.
+     *
+     * @param  string  $facade
+     * @param  string  $class
+     * @return void
+     */
+    protected function aliasFacade($facade, $class)
+    {
+        AliasLoader::getInstance()->alias($facade, $class);
+    }
+
     /**
      * Trim strings for the request's inputs.
      *
