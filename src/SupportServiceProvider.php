@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Providers;
+namespace ElfSundae\Laravel\Support;
 
 use Illuminate\Support\ServiceProvider;
 use ElfSundae\Laravel\Api\ApiServiceProvider;
@@ -24,18 +24,18 @@ class SupportServiceProvider extends ServiceProvider
     {
         $providers = [
             ApiServiceProvider::class,
-            AppConfigServiceProvider::class,
-            CaptchaServiceProvider::class,
-            ClientServiceProvider::class,
-            OptimusServiceProvider::class,
-            RoutingServiceProvider::class,
-            XgPusherServiceProvider::class,
+            Providers\AppConfigServiceProvider::class,
+            Providers\CaptchaServiceProvider::class,
+            Providers\ClientServiceProvider::class,
+            Providers\OptimusServiceProvider::class,
+            Providers\RoutingServiceProvider::class,
+            Providers\XgPusherServiceProvider::class,
         ];
 
         if ($this->app->runningInConsole()) {
             array_push(
                 $providers,
-                ConsoleServiceProvider::class,
+                Providers\ConsoleServiceProvider::class,
                 \Laravel\Tinker\TinkerServiceProvider::class,
                 \Spatie\Backup\BackupServiceProvider::class
             );
