@@ -17,7 +17,7 @@
         "elfsundae/httpclient": "~1.0",
         "elfsundae/laravel-helper": "~1.0",
         "elfsundae/laravel-api": "~1.0",
-        "illuminate/support": "5.*"
+        "illuminate/framework": "5.3.*|5.4.*"
     },
     "require-dev": {
         "mockery/mockery": "~0.9.4",
