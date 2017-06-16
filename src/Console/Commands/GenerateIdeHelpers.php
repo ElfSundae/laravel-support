@@ -4,14 +4,14 @@ namespace ElfSundae\Laravel\Support\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class IdeHelperGenerator extends Command
+class GenerateIdeHelpers extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ide-helper:generate-files
+    protected $signature = 'support:generate-ide-helpers
         {--alone : Do not execute clear-compiled and optimize commands}';
 
     /**

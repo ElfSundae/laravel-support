@@ -70,7 +70,7 @@ class SupportServiceProvider extends ServiceProvider
 
         $this->commands([
             Console\Commands\AssetsVersion::class,
-            Console\Commands\IdeHelperGenerator::class,
+            Console\Commands\GenerateIdeHelpers::class,
             Console\Commands\Int2stringCharacters::class,
         ]);
     }
