@@ -2,26 +2,6 @@
 
 use Ramsey\Uuid\Uuid;
 
-if (! function_exists('get_id')) {
-    /**
-     * Get id from a mixed variable.
-     *
-     * @param  mixed  $var
-     * @param  string  $key
-     * @return mixed
-     */
-    function get_id($var, $key = 'id')
-    {
-        if (is_object($var)) {
-            return $var->{$key};
-        } elseif (is_array($var)) {
-            return $var[$key];
-        }
-
-        return $var;
-    }
-}
-
 if (! function_exists('is_domain')) {
     /**
      * Determines the current domain equals to the given domain identifier.
