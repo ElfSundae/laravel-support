@@ -63,10 +63,15 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
         $this->app->register(\Spatie\Backup\BackupServiceProvider::class);
-        $this->app->register(Providers\ConsoleServiceProvider::class);
 
         $this->publishes([
             __DIR__.'/../config/support.php' => config_path('support.php'),
         ], 'laravel-support');
+
+        $this->commands([
+            Console\Commands\AssetsVersion::class,
+            Console\Commands\IdeHelperGenerator::class,
+            Console\Commands\Int2stringCharacters::class,
+        ]);
     }
 }
