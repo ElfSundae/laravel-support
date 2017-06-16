@@ -23,7 +23,11 @@ Then register the service provider by adding the following to the `providers` ar
 ElfSundae\Laravel\Support\SupportServiceProvider::class,
 ```
 
-## Usage
+And publish config file:
+
+```sh
+php artisan vendor:publish --tag=laravel-support
+```
 
 ## Testing
 
