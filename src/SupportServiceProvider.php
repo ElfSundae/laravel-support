@@ -39,10 +39,6 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(Providers\CaptchaServiceProvider::class);
         $this->app->register(Providers\ClientServiceProvider::class);
         $this->app->register(Providers\RoutingServiceProvider::class);
-
-        Helper::aliasFacade('Captcha', \Mews\Captcha\Facades\Captcha::class);
-        Helper::aliasFacade('Image', \Intervention\Image\Facades\Image::class);
-        Helper::aliasFacade('Qrcode', \SimpleSoftwareIO\QrCode\Facades\QrCode::class);
     }
 
     public function registerForLocalEnvironment()
