@@ -35,7 +35,7 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
         $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
-        $this->app->register(\ElfSundae\Laravel\Support\Datatables\DatatablesServiceProvider::class);
+        $this->app->register(Datatables\DatatablesServiceProvider::class);
         $this->app->register(Providers\AppConfigServiceProvider::class);
         $this->app->register(Providers\CaptchaServiceProvider::class);
         $this->app->register(Providers\ClientServiceProvider::class);

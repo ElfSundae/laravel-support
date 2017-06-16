@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 class Helper
 {
     /**
-     * Create alias for the facade.
+     * Create alias for the Facade.
      *
      * @param  string  $facade
      * @param  string  $class
