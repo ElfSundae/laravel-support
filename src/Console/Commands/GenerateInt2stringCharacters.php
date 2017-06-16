@@ -4,14 +4,14 @@ namespace ElfSundae\Laravel\Support\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class Int2stringCharacters extends Command
+class GenerateInt2stringCharacters extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'support:int2string-characters
+    protected $signature = 'support:generate-int2string-characters
         {--show : Display the characters instead of modifying the config file}
         {--c|characters=0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ : Generate with custom characters}';
 
@@ -20,7 +20,7 @@ class Int2stringCharacters extends Command
      *
      * @var string
      */
-    protected $description = 'Set characters for Helper::int2string.';
+    protected $description = 'Generate characters for `Helper::int2string()`.';
 
     /**
      * Execute the console command.
@@ -39,7 +39,7 @@ class Int2stringCharacters extends Command
 
         $this->laravel['config']['support.int2string'] = $characters;
 
-        $this->info("Characters [$characters] set successfully.");
+        $this->info("Characters [<comment>$characters</comment>] set successfully.");
     }
 
     /**

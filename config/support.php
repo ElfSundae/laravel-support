@@ -46,7 +46,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Characters for `Helper::int2string()` and `Helper::string2int()`.
-    | You may generate it via `php artisan support:int2string-characters`.
+    | You may generate it via `php artisan support:generate-int2string-characters`.
     |
     */
 
