@@ -28,7 +28,6 @@ class SupportServiceProvider extends ServiceProvider
 
     public function registerServices()
     {
-        $this->app->register(\ElfSundae\Laravel\Api\ApiServiceProvider::class);
         $this->app->register(\Intervention\Image\ImageServiceProviderLaravel5::class);
         $this->app->register(\NotificationChannels\BearyChat\BearyChatServiceProvider::class);
         $this->app->register(\SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
@@ -36,12 +35,10 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
         $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
         $this->app->register(Datatables\DatatablesServiceProvider::class);
-        $this->app->register(Services\Optimus\OptimusServiceProvider::class);
         $this->app->register(Providers\AppConfigServiceProvider::class);
         $this->app->register(Providers\CaptchaServiceProvider::class);
         $this->app->register(Providers\ClientServiceProvider::class);
         $this->app->register(Providers\RoutingServiceProvider::class);
-        $this->app->register(Providers\XgPusherServiceProvider::class);
 
         Helper::aliasFacade('Captcha', \Mews\Captcha\Facades\Captcha::class);
         Helper::aliasFacade('Image', \Intervention\Image\Facades\Image::class);

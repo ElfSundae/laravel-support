@@ -1,8 +1,7 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Providers;
+namespace ElfSundae\Laravel\Support\Services\XgPush;
 
-use ElfSundae\Laravel\Support\Tencent\XgPusher;
 use Illuminate\Support\ServiceProvider;
 
 class XgPusherServiceProvider extends ServiceProvider
@@ -20,11 +19,11 @@ class XgPusherServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(XgPusher::class, function ($app) {
-            $config = $app['config']['services.xgpush'];
+            $config = $app['config']['support.xgpush'];
 
             return (new XgPusher($config['key'], $config['secret']))
                 ->setEnvironment($config['environment'])
-                ->setCustomKey($config['custom'])
+                ->setCustomKey($config['custom_key'])
                 ->setAccountPrefix($config['account_prefix']);
         });
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Tencent;
+namespace ElfSundae\Laravel\Support\Services\XgPush;
 
 use ElfSundae\XgPush\Style;
 use ElfSundae\XgPush\Message;
