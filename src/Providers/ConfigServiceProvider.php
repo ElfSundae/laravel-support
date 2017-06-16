@@ -4,10 +4,12 @@ namespace ElfSundae\Laravel\Support\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppConfigServiceProvider extends ServiceProvider
+class ConfigServiceProvider extends ServiceProvider
 {
     /**
      * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
@@ -20,6 +22,8 @@ class AppConfigServiceProvider extends ServiceProvider
 
     /**
      * Configure app defaults.
+     *
+     * @return void
      */
     protected function configureDefaults()
     {
@@ -51,12 +55,12 @@ class AppConfigServiceProvider extends ServiceProvider
         $identifier = array_search($request->getHost(), $config['app.domains']);
 
         // Configure the cookie domain
-        if (! is_null($identifier) && $config->has('support.cookie_domain.'.$identifier)) {
+        if ($identifier && $config->has('support.cookie_domain.'.$identifier)) {
             $config['session.domain'] = $config['support.cookie_domain.'.$identifier];
         }
 
         // Configure the auth defaults
-        if (! is_null($identifier) && is_array($auth = $config['support.auth.'.$identifier])) {
+        if ($identifier && is_array($auth = $config['support.auth.'.$identifier])) {
             $config['auth.defaults'] = $auth;
         }
     }
