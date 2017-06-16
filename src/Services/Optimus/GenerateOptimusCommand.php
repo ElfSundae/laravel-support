@@ -2,7 +2,6 @@
 
 namespace ElfSundae\Laravel\Support\Services\Optimus;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Jenssegers\Optimus\Energon;
 

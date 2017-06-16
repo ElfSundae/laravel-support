@@ -2,7 +2,6 @@
 
 namespace ElfSundae\Laravel\Support\Services\Agent;
 
-use Illuminate\Support\Arr;
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Fluent;
 use ElfSundae\Laravel\Support\Traits\FluentArrayAccess;

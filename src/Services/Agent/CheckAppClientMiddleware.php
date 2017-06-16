@@ -3,7 +3,6 @@
 namespace ElfSundae\Laravel\Support\Services\Agent;
 
 use Closure;
-use Illuminate\Auth\Access\AuthorizationException;
 
 class CheckAppClientMiddleware
 {

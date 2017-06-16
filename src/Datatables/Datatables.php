@@ -2,8 +2,8 @@
 
 namespace ElfSundae\Laravel\Support\Datatables;
 
-use ElfSundae\Laravel\Support\Datatables\Engines\EloquentEngine;
 use Yajra\Datatables\Datatables as BaseDatatables;
+use ElfSundae\Laravel\Support\Datatables\Engines\EloquentEngine;
 
 class Datatables extends BaseDatatables
 {
