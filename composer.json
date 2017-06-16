@@ -20,7 +20,7 @@
         "doctrine/dbal": "~2.5",
         "elfsundae/httpclient": "~1.0",
         "elfsundae/laravel-api": "~1.0",
-        "elfsundae/laravel-helper": "~1.0",
+        "elfsundae/laravel-helper": "~1.0.1",
         "elfsundae/xgpush": "~1.1",
         "iatstuti/laravel-nullable-fields": "~1.4",
         "intervention/image": "~2.3",
