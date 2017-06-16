@@ -2,9 +2,9 @@
 
 namespace ElfSundae\Laravel\Support\Http\Middleware;
 
-use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
+use Illuminate\Cookie\Middleware\EncryptCookies as BaseMiddleware;
 
-class EncryptCookies extends BaseEncrypter
+class EncryptCookies extends BaseMiddleware
 {
     /**
      * The names of the cookies that should be encrypted.
