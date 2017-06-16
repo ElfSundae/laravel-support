@@ -1,10 +1,9 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Providers;
+namespace ElfSundae\Laravel\Support\Services\Optimus;
 
 use Jenssegers\Optimus\Optimus;
 use Illuminate\Support\ServiceProvider;
-use ElfSundae\Laravel\Support\Console\Commands\OptimusGenerate;
 
 class OptimusServiceProvider extends ServiceProvider
 {
@@ -21,7 +20,7 @@ class OptimusServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Optimus::class, function ($app) {
-            $config = $app['config']['optimus'];
+            $config = $app['config']->get('support.optimus');
 
             return new Optimus($config['prime'], $config['inverse'], $config['random']);
         });
@@ -29,7 +28,7 @@ class OptimusServiceProvider extends ServiceProvider
         $this->app->alias(Optimus::class, 'optimus');
 
         $this->app->singleton('command.optimus.generate', function () {
-            return new OptimusGenerate;
+            return new GenerateOptimusCommand;
         });
 
         $this->commands('command.optimus.generate');

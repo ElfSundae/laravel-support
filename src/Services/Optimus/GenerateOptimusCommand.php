@@ -1,26 +1,27 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Console\Commands;
+namespace ElfSundae\Laravel\Support\Services\Optimus;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Jenssegers\Optimus\Energon;
 
-class OptimusGenerate extends Command
+class GenerateOptimusCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'optimus:generate {--show : Display the values instead of modifying files}';
+    protected $signature = 'support:generate-optimus
+        {--show : Display the values instead of modifying files}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Set Optimus prime values';
+    protected $description = 'Generate Optimus values';
 
     /**
      * Execute the console command.
@@ -37,9 +38,10 @@ class OptimusGenerate extends Command
 
         $this->setValuesInEnvironmentFile($values);
 
-        $this->laravel['config']['optimus'] = $values;
+        $this->laravel['config']['support.optimus'] = $values;
 
         $this->printValues($values);
+
         $this->info('Optimus values set successfully.');
     }
 
@@ -48,12 +50,9 @@ class OptimusGenerate extends Command
      *
      * @param  array  $values
      */
-    protected function printValues($values, $method = 'comment')
+    protected function printValues($values)
     {
-        foreach ($values as $key => $value) {
-            $key = Str::title($key);
-            $this->{$method}("{$key}: {$value}");
-        }
+        $this->table(array_keys($values), [array_values($values)]);
     }
 
     /**

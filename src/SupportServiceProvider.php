@@ -36,10 +36,10 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
         $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
         $this->app->register(Datatables\DatatablesServiceProvider::class);
+        $this->app->register(Services\Optimus\OptimusServiceProvider::class);
         $this->app->register(Providers\AppConfigServiceProvider::class);
         $this->app->register(Providers\CaptchaServiceProvider::class);
         $this->app->register(Providers\ClientServiceProvider::class);
-        $this->app->register(Providers\OptimusServiceProvider::class);
         $this->app->register(Providers\RoutingServiceProvider::class);
         $this->app->register(Providers\XgPusherServiceProvider::class);
 
