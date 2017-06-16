@@ -103,13 +103,15 @@ class Client extends Fluent
      */
     public function appChannel()
     {
-        if (func_num_args() > 0) {
-            $checkChannels = is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
+        $appChannel = $this->get('appChannel');
 
-            return in_arrayi($this->attributes['appChannel'], $checkChannels);
+        if (func_num_args() > 0) {
+            $checks = is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
+
+            return $appChannel ? in_arrayi($appChannel, $checks) : false;
         }
 
-        return $this->attributes['appChannel'];
+        return $appChannel;
     }
 
     /**
