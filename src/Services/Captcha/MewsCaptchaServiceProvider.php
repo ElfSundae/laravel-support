@@ -1,13 +1,14 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Providers;
+namespace ElfSundae\Laravel\Support\Services\Captcha;
 
 use Mews\Captcha\CaptchaServiceProvider as ServiceProvider;
 
-class CaptchaServiceProvider extends ServiceProvider
+class MewsCaptchaServiceProvider extends ServiceProvider
 {
     /**
-     * Override the original Captcha service provider to remove the default routing.
+     * Override the original Captcha service provider to
+     * remove the default routing.
      */
     public function boot()
     {
