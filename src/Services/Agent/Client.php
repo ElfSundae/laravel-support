@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support;
+namespace ElfSundae\Laravel\Support\Services\Agent;
 
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Fluent;
@@ -40,15 +40,26 @@ class Client extends Fluent
     protected $agent;
 
     /**
-     * Create a new Client instance.
+     * Get the Agent instance.
      *
-     * @param  array|object  $attributes
+     * @return \Jenssegers\Agent\Agent
      */
-    public function __construct($attributes = [])
+    public function agent()
     {
-        parent::__construct($attributes);
+        return $this->agent;
+    }
 
-        $this->setAgent(app('agent'));
+    /**
+     * Set the Agent instance.
+     *
+     * @param  \Jenssegers\Agent\Agent  $agent
+     * @return $this
+     */
+    public function setAgent(Agent $agent)
+    {
+        $this->agent = $agent;
+
+        return $this->parseAgent();
     }
 
     /**
@@ -80,29 +91,6 @@ class Client extends Fluent
     }
 
     /**
-     * Get the Agent instance.
-     *
-     * @return \Jenssegers\Agent\Agent
-     */
-    public function agent()
-    {
-        return $this->agent;
-    }
-
-    /**
-     * Set the Agent instance.
-     *
-     * @param  \Jenssegers\Agent\Agent  $agent
-     * @return $this
-     */
-    public function setAgent(Agent $agent)
-    {
-        $this->agent = $agent;
-
-        return $this->parseAgent();
-    }
-
-    /**
      * Set the User-Agent to be used.
      *
      * @param  string  $userAgent
@@ -122,7 +110,7 @@ class Client extends Fluent
      */
     public function parseAgent()
     {
-        $this->add(
+        return $this->add(
             $this->parseCommonClient(),
             $this->parseApiClient()
         );
@@ -180,7 +168,7 @@ class Client extends Fluent
      */
     protected function getApiClientInfo($userAgent)
     {
-        if (preg_match('#ua\((.+)\)#is', $userAgent, $matches)) {
+        if (preg_match('#client\((.+)\)#is', $userAgent, $matches)) {
             if ($info = json_decode(urlsafe_base64_decode($matches[1]), true)) {
                 if (is_array($info) && count($info) > 0) {
                     return $info;

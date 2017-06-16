@@ -1,15 +1,16 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Providers;
+namespace ElfSundae\Laravel\Support\Services\Agent;
 
-use ElfSundae\Laravel\Support\Client;
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\ServiceProvider;
 
-class ClientServiceProvider extends ServiceProvider
+class AgentServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the service provider.
+     *
+     * @return void
      */
     public function boot()
     {
@@ -18,6 +19,8 @@ class ClientServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
@@ -28,6 +31,8 @@ class ClientServiceProvider extends ServiceProvider
 
     /**
      * Register the Agent.
+     *
+     * @return void
      */
     protected function registerAgent()
     {
@@ -42,11 +47,13 @@ class ClientServiceProvider extends ServiceProvider
 
     /**
      * Register the Client.
+     *
+     * @return void
      */
     protected function registerClient()
     {
-        $this->app->singleton('client', function () {
-            return new Client;
+        $this->app->singleton('client', function ($app) {
+            return (new Client)->setAgent($app->make('agent'));
         });
 
         $this->app->alias('client', Client::class);

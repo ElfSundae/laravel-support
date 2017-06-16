@@ -29,6 +29,7 @@ class SupportServiceProvider extends ServiceProvider
     public function registerServices()
     {
         $this->app->register(Providers\ConfigServiceProvider::class);
+        $this->app->register(Services\Agent\AgentServiceProvider::class);
 
         $this->app->register(\Intervention\Image\ImageServiceProviderLaravel5::class);
         $this->app->register(\NotificationChannels\BearyChat\BearyChatServiceProvider::class);
@@ -37,7 +38,6 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
         $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
         $this->app->register(Datatables\DatatablesServiceProvider::class);
-        $this->app->register(Providers\ClientServiceProvider::class);
         $this->app->register(Providers\RoutingServiceProvider::class);
     }
 
