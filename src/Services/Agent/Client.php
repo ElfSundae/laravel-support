@@ -18,7 +18,6 @@ use ElfSundae\Laravel\Support\Traits\FluentArrayAccess;
  * @property string appChannel
  * @property string network
  * @property string udid
- * @property bool isAppStoreReviewing
  */
 class Client extends Fluent
 {
