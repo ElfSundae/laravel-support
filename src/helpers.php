@@ -75,7 +75,7 @@ if (! function_exists('revision')) {
      */
     function revision($path)
     {
-        if ($rev = array_get(config('assets'), trim($path, '/'))) {
+        if ($rev = array_get(config('assets-version'), trim($path, DIRECTORY_SEPARATOR))) {
             return $path.'?'.$rev;
         }
 

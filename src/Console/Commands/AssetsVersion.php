@@ -11,7 +11,8 @@ class AssetsVersion extends Command
      *
      * @var string
      */
-    protected $signature = 'assets:version {--config=assets : The filename of the assets configuration}';
+    protected $signature = 'support:assets-version
+        {--filename=assets-version : The filename of the assets version configuration}';
 
     /**
      * The console command description.
@@ -27,19 +28,21 @@ class AssetsVersion extends Command
      */
     public function handle()
     {
-        $config = (string) $this->option('config');
+        $filename = (string) $this->option('filename');
 
-        $assets = $this->laravel['config']->get($config);
+        $assets = $this->laravel['config']->get($filename);
 
         $revisioned = $this->revisionAssets($assets);
 
         if ($assets !== $revisioned) {
-            $this->updateAssetsConfigFile($config, $revisioned);
+            $this->updateAssetsVersionConfigFile($filename, $revisioned);
 
-            $this->laravel['config'][$config] = $revisioned;
+            $this->laravel['config'][$filename] = $revisioned;
         }
 
-        $this->info('Assets configuration '.(is_null($assets) ? 'created!' : 'updated!'));
+        $this->info('Assets version configuration'.
+            ' <comment>'.$this->getConfigFilePath($filename).'</comment> '.
+            (is_null($assets) ? 'created!' : 'updated!'));
     }
 
     /**
@@ -53,21 +56,23 @@ class AssetsVersion extends Command
         $newAssets = [];
 
         if (is_array($assets)) {
-            foreach ($assets as $file => $value) {
-                if (is_numeric($file)) {
-                    $file = $value;
+            foreach ($assets as $filename => $value) {
+                if (is_numeric($filename)) {
+                    $filename = $value;
                     $value = '0';
                 }
 
-                $path = public_path($file);
+                $filename = trim($filename, DIRECTORY_SEPARATOR);
+
+                $path = public_path($filename);
 
                 if (is_file($path)) {
                     $value = substr(md5_file($path), 0, 10);
                 } else {
-                    $this->error("Revisioning file [{$file}] failed.");
+                    $this->error("Revisioning file [{$filename}] failed.");
                 }
 
-                $newAssets[$file] = $value;
+                $newAssets[$filename] = $value;
             }
         }
 
@@ -75,16 +80,27 @@ class AssetsVersion extends Command
     }
 
     /**
-     * Update assets config file.
+     * Update assets version config file.
      *
-     * @param  string  $config
+     * @param  string  $filename
      * @param  mixed  $assets
      */
-    protected function updateAssetsConfigFile($config, $assets)
+    protected function updateAssetsVersionConfigFile($filename, $assets)
     {
         file_put_contents(
-            config_path($config.'.php'),
+            $this->getConfigFilePath($filename),
             sprintf("<?php\n\nreturn %s;\n", var_export($assets, true))
         );
+    }
+
+    /**
+     * Get config file path.
+     *
+     * @param  string  $filename
+     * @return string
+     */
+    protected function getConfigFilePath($filename)
+    {
+        return config_path($filename.'.php');
     }
 }
