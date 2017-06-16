@@ -128,6 +128,36 @@ if (! function_exists('cdn_url')) {
     }
 }
 
+if (! function_exists('gravatar')) {
+    /**
+     * Generate a Gravatar url.
+     *
+     * @see http://cn.gravatar.com/site/implement/images/
+     *
+     * @param  string  $email
+     * @param  int  $size
+     * @param  string  $default
+     * @param  string  $rating
+     * @return string
+     */
+    function gravatar($email, $size = 100, $default = null, $rating = null)
+    {
+        if (is_null($default)) {
+            $default = config('support.gravatar.default');
+        }
+        if (is_null($rating)) {
+            $rating = config('support.gravatar.rating');
+        }
+
+        $query = http_build_query(array_filter(compact('size', 'default', 'rating')));
+
+        return app('url')->assetFrom(
+            config('support.gravatar.host', 'http://gravatar.com/avatar'),
+            md5(strtolower(trim($email))).'?'.$query
+        );
+    }
+}
+
 if (! function_exists('optimus_encode')) {
     /**
      * Encode a number with Optimus.

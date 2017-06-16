@@ -182,34 +182,6 @@ class Helper
     }
 
     /**
-     * Get the Gravatar URL.
-     *
-     * @param  string  $email
-     * @param  int  $size
-     * @param  string  $default
-     * @param  string  $rating
-     * @return string
-     *
-     * @see http://cn.gravatar.com/site/implement/images/
-     */
-    public static function gravatar($email, $size = 100, $default = null, $rating = null)
-    {
-        if (is_null($default)) {
-            $default = config('services.gravatar.default');
-        }
-        if (is_null($rating)) {
-            $rating = config('services.gravatar.rating');
-        }
-
-        $query = http_build_query(compact('size', 'default', 'rating'));
-
-        return app('url')->assetFrom(
-            config('services.gravatar.host', 'http://gravatar.com/avatar'),
-            md5(strtolower(trim($email))).'?'.$query
-        );
-    }
-
-    /**
      * Encrypt ASCII string via XOR.
      *
      * @param  string  $text
