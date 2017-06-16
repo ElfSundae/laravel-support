@@ -163,6 +163,8 @@ class Client extends Fluent
 
         if (is_string($this->version('MicroMessenger'))) {
             $info['isWechat'] = true;
+        } else {
+            unset($info['isWechat']);
         }
 
         return array_filter($info);
