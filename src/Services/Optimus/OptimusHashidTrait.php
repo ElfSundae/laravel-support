@@ -1,8 +1,8 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits\Eloquent;
+namespace ElfSundae\Laravel\Support\Services\Optimus;
 
-trait OptimusHashid
+trait OptimusHashidTrait
 {
     /**
      * Get the value of the model's primary key.
