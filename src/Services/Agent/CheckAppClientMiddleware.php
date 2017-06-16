@@ -1,11 +1,11 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Http\Middleware;
+namespace ElfSundae\Laravel\Support\Services\Agent;
 
 use Closure;
 use Illuminate\Auth\Access\AuthorizationException;
 
-class CheckApiClient
+class CheckAppClientMiddleware
 {
     /**
      * Handle an incoming request.
@@ -13,15 +13,13 @@ class CheckApiClient
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function handle($request, Closure $next)
     {
-        if (app('client')->isApiClient) {
+        if (app('client')->is('AppClient')) {
             return $next($request);
         }
 
-        throw new AuthorizationException('Unauthorized Client');
+        return response('Unauthorized App Client', 403);
     }
 }
