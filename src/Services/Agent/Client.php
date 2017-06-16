@@ -2,6 +2,7 @@
 
 namespace ElfSundae\Laravel\Support\Services\Agent;
 
+use Illuminate\Support\Arr;
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Fluent;
 use ElfSundae\Laravel\Support\Traits\FluentArrayAccess;
@@ -13,19 +14,11 @@ use ElfSundae\Laravel\Support\Traits\FluentArrayAccess;
  * @property string osVersion
  * @property string platform
  * @property string locale
- * @property bool isIOS
- * @property bool isAndroid
- * @property bool isWechat
- * @property bool isApiClient
- * @property string network
  * @property string app
  * @property string appVersion
  * @property string appChannel
- * @property string tdid
- * @property bool isAppStoreChannel
- * @property bool isDebugChannel
- * @property bool isAdHocChannel
- * @property bool isInHouseChannel
+ * @property string network
+ * @property string udid
  * @property bool isAppStoreReviewing
  */
 class Client extends Fluent
@@ -91,6 +84,35 @@ class Client extends Fluent
     }
 
     /**
+     * Check a certain value exists, case insensitived.
+     *
+     * @param  string  $value
+     * @return bool
+     */
+    public function is($value)
+    {
+        return in_arrayi($value, $this->attributes) ||
+            in_arrayi('is'.$value, array_keys($this->attributes)) ||
+            $this->agent->is($value);
+    }
+
+    /**
+     * Get or check the current app channel.
+     *
+     * @return string|bool
+     */
+    public function appChannel()
+    {
+        if (func_num_args() > 0) {
+            $checkChannels = is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
+
+            return in_arrayi($this->attributes['appChannel'], $checkChannels);
+        }
+
+        return $this->attributes['appChannel'];
+    }
+
+    /**
      * Set the User-Agent to be used.
      *
      * @param  string  $userAgent
@@ -108,11 +130,11 @@ class Client extends Fluent
      *
      * @return $this
      */
-    public function parseAgent()
+    protected function parseAgent()
     {
         return $this->add(
             $this->parseCommonClient(),
-            $this->parseApiClient()
+            $this->parseAppClient()
         );
     }
 
@@ -130,12 +152,11 @@ class Client extends Fluent
             'locale' => head($this->agent->languages()),
         ];
 
-        if ((bool) $this->agent->is('iOS')) {
-            $info['isIOS'] = true;
+        if ($this->agent->is('iOS')) {
+            $info['os'] = 'iOS';
         }
 
-        if ((bool) $this->agent->is('AndroidOS')) {
-            $info['isAndroid'] = true;
+        if ($this->agent->is('AndroidOS')) {
             $info['os'] = 'Android';
         }
 
@@ -147,30 +168,36 @@ class Client extends Fluent
     }
 
     /**
-     * Parse API client from the User-Agent.
+     * Parse app client from the User-Agent.
      *
      * @example `Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H143 _ua(eyJuZXQiOiJXaUZpIiwib3MiOiJpT1MiLCJhcHBWIjoiMC4xLjIiLCJvc1YiOiI4LjQiLCJhcHAiOiJndXBpYW8iLCJhcHBDIjoiRGVidWciLCJ0ZGlkIjoiaDNiYjFmNTBhYzBhMzdkYmE4ODhlMTgyNjU3OWJkZmZmIiwiYWNpZCI6IjIxZDNmYmQzNDNmMjViYmI0MzU2ZGEyMmJmZjUxZDczZjg0YWQwNmQiLCJsb2MiOiJ6aF9DTiIsInBmIjoiaVBob25lNywxIn0)`
      *
      * @return array
      */
-    protected function parseApiClient()
+    protected function parseAppClient()
     {
-        return $this->getApiClientAttributes(
-            $this->getApiClientInfo($this->agent->getUserAgent())
+        $data = $this->getAppClientAttributes(
+            $this->getAppClientData($this->agent->getUserAgent())
         );
+
+        if (! $data) {
+            $this->resetAppClientAttributes();
+        }
+
+        return $data;
     }
 
     /**
-     * Get API client information from the User-Agent.
+     * Get app client information from the User-Agent.
      *
      * @param  string  $userAgent
      * @return array
      */
-    protected function getApiClientInfo($userAgent)
+    protected function getAppClientData($userAgent)
     {
         if (preg_match('#client\((.+)\)#is', $userAgent, $matches)) {
             if ($info = json_decode(urlsafe_base64_decode($matches[1]), true)) {
-                if (is_array($info) && count($info) > 0) {
+                if (is_array($info) && ! empty($info)) {
                     return $info;
                 }
             }
@@ -180,12 +207,12 @@ class Client extends Fluent
     }
 
     /**
-     * Get API client attributes.
+     * Get app client attributes.
      *
      * @param  array  $info
      * @return array
      */
-    protected function getApiClientAttributes($info)
+    protected function getAppClientAttributes($info)
     {
         $info = array_filter($info);
         $data = [];
@@ -195,56 +222,36 @@ class Client extends Fluent
             ($data['osVersion'] = array_get($info, 'osV')) &&
             ($data['platform'] = array_get($info, 'pf')) &&
             ($data['locale'] = array_get($info, 'loc')) &&
-            ($data['network'] = array_get($info, 'net')) &&
             ($data['app'] = array_get($info, 'app')) &&
             ($data['appVersion'] = array_get($info, 'appV')) &&
             ($data['appChannel'] = array_get($info, 'appC')) &&
-            ($data['tdid'] = array_get($info, 'tdid'))
+            ($data['network'] = array_get($info, 'net')) &&
+            ($data['udid'] = array_get($info, 'udid'))
         ) {
             if ($data['os'] === 'iPhone OS') {
                 $data['os'] = 'iOS';
             }
 
-            $data['isIOS'] = $data['os'] === 'iOS';
-            $data['isAndroid'] = $data['os'] === 'Android';
-
-            $data['isAppStoreChannel'] = $data['appChannel'] === 'App Store';
-            $data['isDebugChannel'] = $data['appChannel'] === 'Debug';
-            $data['isAdHocChannel'] = $data['appChannel'] === 'Ad Hoc';
-            $data['isInHouseChannel'] = $data['appChannel'] === 'In House';
-
-            $data['isAppStoreReviewing'] = (
-                $data['isIOS'] &&
-                $data['isAppStoreChannel'] &&
-                $data['appVersion'] === config('var.ios.app_store_reviewing_version')
-            );
-
-            $data['isApiClient'] = true;
+            $data['isAppClient'] = true;
 
             return array_filter($data);
         }
-
-        $this->resetApiClientAttributes();
 
         return [];
     }
 
     /**
-     * Reset API client attributes.
+     * Reset app client attributes.
      */
-    protected function resetApiClientAttributes()
+    protected function resetAppClientAttributes()
     {
         unset(
-            $this->attributes['network'],
             $this->attributes['app'],
             $this->attributes['appVersion'],
             $this->attributes['appChannel'],
-            $this->attributes['tdid'],
-            $this->attributes['isAppStoreChannel'],
-            $this->attributes['isDebugChannel'],
-            $this->attributes['isAdHocChannel'],
-            $this->attributes['isInHouseChannel'],
-            $this->attributes['isAppStoreReviewing']
+            $this->attributes['network'],
+            $this->attributes['udid'],
+            $this->attributes['isAppClient']
         );
     }
 
