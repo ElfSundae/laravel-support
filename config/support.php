@@ -6,6 +6,11 @@ return [
     |--------------------------------------------------------------------------
     | Application URLs
     |--------------------------------------------------------------------------
+    |
+    | Here you may define all of your application URLs, with format
+    | "identifier => url". The domain of each URL is avaliable in
+    | "app.domains" configuration.
+    |
     */
 
     'url' => [
@@ -20,6 +25,9 @@ return [
     |--------------------------------------------------------------------------
     | Session Cookie Domains
     |--------------------------------------------------------------------------
+    |
+    | Here you may define the cookie domain for a special application identifier.
+    |
     */
 
     'cookie_domain' => [
@@ -31,6 +39,10 @@ return [
     |--------------------------------------------------------------------------
     | Authentications Defaults
     |--------------------------------------------------------------------------
+    |
+    | Here you may define the authentication "guard" and password reset options
+    | for a special application identifier.
+    |
     */
 
     'auth' => [
@@ -46,24 +58,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Characters for `Helper::int2string()` and `Helper::string2int()`.
-    | You may generate it via `php artisan support:generate-int2string-characters`.
+    | You may generate it using
+    | `php artisan support:generate-int2string-characters` command.
     |
     */
 
     'int2string' => env('INT2STRING_CHARACTERS', '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Gravatar
-    |--------------------------------------------------------------------------
-    */
-
-    'gravatar' => [
-        // 'host' => 'http://gravatar.com/avatar',
-        'host' => 'http://v2ex.assets.uxengine.net/gravatar',
-        'default' => 'identicon',
-        'rating' => 'pg',
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ return [
     | - The inverse prime so that (PRIME * INVERSE) & MAXID == 1
     | - A large random integer lower than 2147483647
     |
-    | You may generate them via `php artisan support:generate-optimus`.
+    | You may generate them using `php artisan support:generate-optimus` command.
     |
     */
 
@@ -88,11 +88,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Gravatar Service
+    |--------------------------------------------------------------------------
+    */
+
+    'gravatar' => [
+        // 'host' => 'https://www.gravatar.com/avatar',
+        'host' => 'http://v2ex.assets.uxengine.net/gravatar',
+        'default' => 'identicon',
+        'rating' => 'pg',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Tencent Xinge Push Service
     |--------------------------------------------------------------------------
-    |
-    | http://xg.qq.com
-    |
     */
 
     'xgpush' => [
