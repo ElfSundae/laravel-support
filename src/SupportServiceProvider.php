@@ -35,9 +35,6 @@ class SupportServiceProvider extends ServiceProvider
         $this->app->register(\NotificationChannels\BearyChat\BearyChatServiceProvider::class);
         $this->app->register(\SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
         $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
-        $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
-        $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
-        $this->app->register(Datatables\DatatablesServiceProvider::class);
         $this->app->register(Providers\RoutingServiceProvider::class);
     }
 
