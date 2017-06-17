@@ -4,7 +4,7 @@ namespace ElfSundae\Laravel\Support\Services\Agent;
 
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Fluent;
-use ElfSundae\Laravel\Support\Traits\FluentArrayAccess;
+use ElfSundae\Laravel\Helper\Traits\FluentArrayAccess;
 
 /**
  * The app client.
