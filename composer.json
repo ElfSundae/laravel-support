@@ -19,7 +19,7 @@
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "~2.5",
         "elfsundae/httpclient": "~1.0.1",
-        "elfsundae/laravel-agent": "~1.0.1",
+        "elfsundae/laravel-agent": "~2.0",
         "elfsundae/laravel-api": "~1.0.1",
         "elfsundae/laravel-datatables": "~1.0",
         "elfsundae/laravel-helper": "~1.1",
