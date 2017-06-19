@@ -15,33 +15,110 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/support.php', 'support');
 
-        $this->registerServices();
+        $this->setupConfiguration();
 
-        if ($this->app->isLocal()) {
-            $this->registerForLocalEnvironment();
-        }
+        array_map([$this->app, 'register'], $this->getServiceProviders());
 
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/support.php' => config_path('support.php'),
+            ], 'laravel-support');
+
             $this->registerForConsole();
         }
     }
 
-    public function registerServices()
+    /**
+     * Setup app configuration.
+     *
+     * @return void
+     */
+    protected function setupConfiguration()
     {
-        $this->app->register(Providers\ConfigServiceProvider::class);
-        $this->app->register(\ElfSundae\Laravel\Agent\AgentServiceProvider::class);
+        if (! $this->app->configurationIsCached()) {
+            $this->configureDefaults();
+        }
 
-        $this->app->register(\Intervention\Image\ImageServiceProviderLaravel5::class);
-        $this->app->register(\NotificationChannels\BearyChat\BearyChatServiceProvider::class);
-        $this->app->register(\SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class);
-        $this->app->register(\Vinkla\Hashids\HashidsServiceProvider::class);
-        $this->app->register(Providers\RoutingServiceProvider::class);
+        $this->configureForCurrentRequest();
     }
 
-    public function registerForLocalEnvironment()
+    /**
+     * Configure app defaults.
+     *
+     * @return void
+     */
+    protected function configureDefaults()
     {
-        $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-        $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        $config = $this->app['config'];
+
+        // Append "app.domains"
+        $config['app.domains'] = array_map(function ($value) {
+            if (is_string($domain = parse_url($value, PHP_URL_HOST))) {
+                if (str_contains($domain, '.')) {
+                    return $domain;
+                }
+            }
+        }, $config['support.url']);
+
+        // Set "mail.from.name"
+        if ($config['mail.from.name'] == 'Example') {
+            $config['mail.from.name'] = $config['app.name'];
+        }
+    }
+
+    /**
+     * Configure app for the current request.
+     *
+     * @return void
+     */
+    protected function configureForCurrentRequest()
+    {
+        $config = $this->app['config'];
+        $request = $this->app['request'];
+
+        $identifier = array_search($request->getHost(), $config['app.domains']);
+
+        if ($identifier && $config->has('support.cookie_domain.'.$identifier)) {
+            $config['session.domain'] = $config['support.cookie_domain.'.$identifier];
+        }
+
+        if ($identifier && is_array($auth = $config['support.auth.'.$identifier])) {
+            $config['auth.defaults'] = $auth;
+        }
+    }
+
+    /**
+     * Get service providers to be registered.
+     *
+     * @return array
+     */
+    protected function getServiceProviders()
+    {
+        $providers = [];
+
+        if ($this->app->isLocal()) {
+            array_push(
+                $providers,
+                \Barryvdh\Debugbar\ServiceProvider::class
+            );
+
+            if ($this->app->runningInConsole()) {
+                array_push(
+                    $providers,
+                    \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
+                );
+            }
+        }
+
+        if ($this->app->runningInConsole()) {
+            array_push(
+                $providers,
+                \Laravel\Tinker\TinkerServiceProvider::class,
+                \Spatie\Backup\BackupServiceProvider::class
+            );
+        }
+
+        return $providers;
     }
 
     /**
@@ -51,13 +128,6 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function registerForConsole()
     {
-        $this->app->register(\Laravel\Tinker\TinkerServiceProvider::class);
-        $this->app->register(\Spatie\Backup\BackupServiceProvider::class);
-
-        $this->publishes([
-            __DIR__.'/../config/support.php' => config_path('support.php'),
-        ], 'laravel-support');
-
         $this->commands([
             Console\Commands\AssetsVersion::class,
             Console\Commands\GenerateIdeHelpers::class,

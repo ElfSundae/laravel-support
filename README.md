@@ -1,5 +1,3 @@
-# laravel-support
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/elfsundae/laravel-support.svg?style=flat-square)](https://packagist.org/packages/elfsundae/laravel-support)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/ElfSundae/laravel-support/master.svg?style=flat-square)](https://travis-ci.org/ElfSundae/laravel-support)
@@ -9,33 +7,4 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/elfsundae/laravel-support/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/elfsundae/laravel-support/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/elfsundae/laravel-support.svg?style=flat-square)](https://packagist.org/packages/elfsundae/laravel-support)
 
-## Installation
-
-You can install this package using the [Composer](https://getcomposer.org) manager:
-
-```sh
-$ composer require elfsundae/laravel-support
-```
-
-Then register the service provider by adding the following to the `providers` array in `config/app.php`:
-
-```php
-ElfSundae\Laravel\Support\SupportServiceProvider::class,
-```
-
-And publish config file:
-
-```sh
-php artisan vendor:publish --tag=laravel-support
-```
-
-## Testing
-
-```sh
-$ composer test
-```
-
-## License
-
-This package is open-sourced software licensed under the [MIT License](LICENSE.md).
-
+> **Only for my own use.**
