@@ -16,22 +16,22 @@ class OptimusServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
-        $this->app->singleton(Optimus::class, function ($app) {
+        $this->app->singleton('optimus', function ($app) {
             $config = $app['config']->get('support.optimus');
 
             return new Optimus($config['prime'], $config['inverse'], $config['random']);
         });
 
-        $this->app->alias(Optimus::class, 'optimus');
+        $this->app->alias('optimus', Optimus::class);
 
-        $this->app->singleton('command.optimus.generate', function () {
-            return new GenerateOptimusCommand;
-        });
-
-        $this->commands('command.optimus.generate');
+        if ($this->app->runningInConsole()) {
+            $this->commands(GenerateOptimusCommand::class);
+        }
     }
 
     /**
@@ -41,10 +41,6 @@ class OptimusServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [
-            Optimus::class,
-            'optimus',
-            'command.optimus.generate',
-        ];
+        return ['optimus', Optimus::class];
     }
 }
