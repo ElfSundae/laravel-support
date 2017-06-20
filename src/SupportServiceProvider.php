@@ -94,7 +94,9 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function getServiceProviders()
     {
-        $providers = [];
+        $providers = [
+            Providers\RoutingServiceProvider::class,
+        ];
 
         if ($this->app->isLocal()) {
             array_push(
