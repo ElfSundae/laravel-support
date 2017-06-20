@@ -38,16 +38,12 @@ class Sms
             case 406:
             case 474:
             throw new ActionFailureException('Server Error #'.$status);
-
             case 457:
             throw new InvalidInputException('请填写正确的手机号', 10);
-
             case 466:
             throw new InvalidInputException('验证码不能为空');
-
             case 467:
             throw new InvalidInputException('请求验证码过于频繁，请稍后再试');
-
             default:
             throw new InvalidInputException('验证码无效，请重新获取');
         }
