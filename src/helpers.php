@@ -2,14 +2,14 @@
 
 use Ramsey\Uuid\Uuid;
 
-if (! function_exists('is_domain')) {
+if (! function_exists('is_app')) {
     /**
      * Determines the current domain equals to the given domain identifier.
      *
      * @param  string  $identifier
      * @return bool
      */
-    function is_domain($identifier)
+    function is_app($identifier)
     {
         return app('request')->getHost() === config('app.domains.'.$identifier);
     }
