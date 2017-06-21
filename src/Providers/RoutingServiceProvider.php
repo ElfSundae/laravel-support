@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RoutingServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the service provider.
+     * Bootstrap any application services.
      */
     public function boot()
     {
