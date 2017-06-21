@@ -27,7 +27,7 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/support.php', 'support');
 
-        $this->setupConfiguration();
+        $this->setupConfigurations();
 
         array_map([$this->app, 'register'], $this->getServiceProviders());
 
@@ -37,11 +37,11 @@ class SupportServiceProvider extends ServiceProvider
     }
 
     /**
-     * Setup app configuration.
+     * Setup application configurations.
      *
      * @return void
      */
-    protected function setupConfiguration()
+    protected function setupConfigurations()
     {
         if (! $this->app->configurationIsCached()) {
             $this->configureDefaults();
@@ -51,7 +51,7 @@ class SupportServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure app defaults.
+     * Configure application defaults.
      *
      * @return void
      */
@@ -75,7 +75,7 @@ class SupportServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure app for the current request.
+     * Configure application for the current request.
      *
      * @return void
      */
