@@ -7,7 +7,19 @@ use Illuminate\Support\ServiceProvider;
 class SupportServiceProvider extends ServiceProvider
 {
     /**
-     * Register the service provider.
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../config/support.php' => config_path('support.php'),
+        ], 'laravel-support');
+    }
+
+    /**
+     * Register the service.
      *
      * @return void
      */
@@ -20,10 +32,6 @@ class SupportServiceProvider extends ServiceProvider
         array_map([$this->app, 'register'], $this->getServiceProviders());
 
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/support.php' => config_path('support.php'),
-            ], 'laravel-support');
-
             $this->registerForConsole();
         }
     }
