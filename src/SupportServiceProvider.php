@@ -67,11 +67,6 @@ class SupportServiceProvider extends ServiceProvider
                 }
             }
         }, $config['support.url']);
-
-        // Set "mail.from.name"
-        if ($config['mail.from.name'] == 'Example') {
-            $config['mail.from.name'] = $config['app.name'];
-        }
     }
 
     /**
