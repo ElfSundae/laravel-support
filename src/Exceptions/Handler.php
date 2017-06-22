@@ -199,7 +199,7 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $e
      * @return \ElfSundae\Laravel\Api\Http\ApiResponse
      */
-    protected function createApiResponse($message = null, $code = null, Exception $e)
+    protected function createApiResponse($message, $code, Exception $e)
     {
         $response = new ApiResponse($message, $code);
 
