@@ -4,7 +4,7 @@ use Ramsey\Uuid\Uuid;
 
 if (! function_exists('is_app')) {
     /**
-     * Determines the current domain equals to the given domain identifier.
+     * Check the current application identifier.
      *
      * @param  string  $identifier
      * @return bool
