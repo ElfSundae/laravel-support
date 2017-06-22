@@ -38,7 +38,7 @@ if (! function_exists('gravatar')) {
     /**
      * Generate a Gravatar url.
      *
-     * @see http://cn.gravatar.com/site/implement/images/
+     * @see https://en.gravatar.com/site/implement/images/
      *
      * @param  string  $email
      * @param  int  $size
