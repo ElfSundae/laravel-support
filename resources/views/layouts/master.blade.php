@@ -6,7 +6,7 @@
 @hasSection('full-title')
   <title>@yield('full-title')</title>
 @else
-  <title>@hasSection('title')@yield('title') - @endif{{ config('app.name') }}</title>
+  <title>@hasSection('title')@yield('title') - @endif<?php ?>@yield('title-suffix', config('app.name'))</title>
 @endif
 @hasSection('description')
   <meta name="description" content="@yield('description')">
