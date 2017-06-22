@@ -17,8 +17,11 @@ class SupportServiceProvider extends ServiceProvider
 
         $this->publishes([
             __DIR__.'/../config/support.php' => config_path('support.php'),
-            __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
         ], 'laravel-support');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
+        ], 'laravel-support-views');
     }
 
     /**
