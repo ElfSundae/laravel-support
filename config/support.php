@@ -14,7 +14,7 @@ return [
     */
 
     'url' => [
-        'site' => env('APP_URL'),
+        'web' => env('APP_URL'),
         'admin' => env('APP_URL_ADMIN', env('APP_URL')),
         'api' => env('APP_URL_API', env('APP_URL')),
         'asset' => env('APP_URL_ASSET', env('APP_URL')),
