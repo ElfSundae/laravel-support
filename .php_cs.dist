@@ -3,7 +3,12 @@
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
-$finder = Finder::create()->in(__DIR__);
+$finder = Finder::create()
+    ->in([
+        __DIR__.'/config',
+        __DIR__.'/src',
+        __DIR__.'/tests',
+    ]);
 
 $rules = [
     'array_syntax' => ['syntax' => 'short'],
