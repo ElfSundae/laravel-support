@@ -96,7 +96,7 @@ return [
     */
 
     'gravatar' => [
-        'host' => 'https://www.gravatar.com/avatar',
+        'host' => 'https://v2ex.assets.uxengine.net/gravatar',
         'default' => 'identicon',
         'rating' => 'pg',
     ],
