@@ -112,24 +112,23 @@ if (! function_exists('app_url')) {
 
 if (! function_exists('asset_url')) {
     /**
-     * Generate an asset URL.
+     * Generate an asset URL to the given path.
      *
-     * @param  string $path
+     * @param  string  $path
      * @return string
      */
     function asset_url($path, $identifier = 'asset')
     {
-        if (filter_var($path, FILTER_VALIDATE_URL) !== false) {
-            return $path;
-        }
-
-        return config('support.url.'.$identifier).'/'.revision(trim($path, '/'));
+        return app('url')->assetFrom(
+            config('support.url.'.$identifier),
+            revision($path)
+        );
     }
 }
 
 if (! function_exists('cdn_url')) {
     /**
-     * Generate an asset CDN URL.
+     * Generate an asset CDN URL to the given path.
      *
      * @param  string  $path
      * @return string
