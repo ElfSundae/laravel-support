@@ -17,32 +17,30 @@ if (! function_exists('is_app')) {
 
 if (! function_exists('app_url')) {
     /**
-     * Generate an URL for the application.
+     * Generate an absolute URL to the given path.
      *
      * @param  string  $path
-     * @param  mixed  $parameters
+     * @param  mixed  $query
      * @param  string  $identifier
      * @return string
      */
-    function app_url($path = '', $parameters = null, $identifier = 'site')
+    function app_url($path = '', $query = [], $identifier = '')
     {
         $path = trim($path, '/');
-        if (! empty($path) && ! starts_with($path, ['?', '&', '#'])) {
+        if (! empty($path)) {
             $path = '/'.$path;
         }
 
-        if (! is_null($parameters)) {
-            $query = http_build_query($parameters);
+        if ($query) {
+            $query = http_build_query($query);
             if (! empty($query)) {
                 $path .= (str_contains($path, ['?', '&', '#']) ? '&' : '?').$query;
             }
         }
 
-        if ($identifier && ($root = config('support.url.'.$identifier))) {
-            return $root.$path;
-        }
+        $root = $identifier ? config('support.url.'.$identifier) : config('app.url');
 
-        return url($path);
+        return $root.$path;
     }
 }
 
