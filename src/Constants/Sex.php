@@ -26,7 +26,7 @@ class Sex
     /**
      * Convert a sex string to int type.
      *
-     * @param  mixed  $string
+     * @param  mixed  $sex
      * @return int
      */
     public static function type($sex)
