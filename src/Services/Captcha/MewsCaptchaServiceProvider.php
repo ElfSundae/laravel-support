@@ -16,7 +16,7 @@ class MewsCaptchaServiceProvider extends ServiceProvider
             base_path('vendor/mews/captcha/config/captcha.php') => config_path('captcha.php'),
         ], 'config');
 
-        $this->app['validator']->extend('captcha', function ($attribute, $value, $parameters) {
+        $this->app['validator']->extend('captcha', function ($attribute, $value) {
             return captcha_check($value);
         });
     }
