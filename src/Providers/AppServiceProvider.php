@@ -26,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function setLocaleForCarbon()
     {
-        return Carbon::setLocale($this->app['config']->get('support.carbon_locale'), $this->app->getLocale());
+        return Carbon::setLocale(
+            $this->app['config']->get('support.carbon_locale', $this->app->getLocale())
+        );
     }
 
     /**
@@ -121,17 +123,27 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->resolving('agent.client', function ($client) {
             if (! $client->is('AppClient')) {
-                $client->setUserAgent($this->getUserAgentForFakeAppClient());
+                $client->setUserAgent($this->getUserAgentForFakingAppClient());
             }
+        });
+
+        $this->app->rebinding('request', function ($app, $request) {
+            if ($request->hasHeader('X-API-TOKEN') || $request->has('_token')) {
+                return;
+            }
+
+            $request->headers->add(
+                $this->getApiTokenHeadersForFakingAppClient()
+            );
         });
     }
 
     /**
-     * Get User-Agent string for fake app client.
+     * Get User-Agent string for faking app client.
      *
      * @return string
      */
-    protected function getUserAgentForFakeAppClient()
+    protected function getUserAgentForFakingAppClient()
     {
         $clientData = urlsafe_base64_encode(json_encode(
             $this->app['config']->get('support.fake_app_client', [])
@@ -140,5 +152,25 @@ class AppServiceProvider extends ServiceProvider
         $userAgent = $this->app['request']->header('User-Agent');
 
         return "$userAgent client({$clientData})";
+    }
+
+    /**
+     * Get API token request headers for faking app client.
+     *
+     * @return array
+     */
+    protected function getApiTokenHeadersForFakingAppClient()
+    {
+        $data = app('api.token')->generateDataForKey(
+            app('api.client')->defaultAppKey()
+        );
+
+        $headers = [];
+
+        foreach ($data as $key => $value) {
+            $headers['X-API-'.strtoupper($key)] = $value;
+        }
+
+        return $headers;
     }
 }
