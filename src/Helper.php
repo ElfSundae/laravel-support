@@ -29,6 +29,36 @@ class Helper
     }
 
     /**
+     * Add JSON type to the "Accept" header for the current request.
+     *
+     * @see https://laravel-china.org/topics/3430/modify-request-headers-incomplete-raiders
+     *
+     * @param  callable  $determination
+     * @param  callable  $callback
+     * @return mixed
+     */
+    public static function addAcceptableJsonType($determination = null, $callback = null)
+    {
+        return app()->rebinding('request', function ($app, $request) use ($determination, $callback) {
+            if (is_null($determination) || call_user_func($determination, $request)) {
+                $accept = $request->headers->get('Accept');
+
+                if (! str_contains($accept, ['/json', '+json'])) {
+                    $accept = rtrim('application/json,'.$accept, ',');
+
+                    $request->headers->set('Accept', $accept);
+                    $request->server->set('HTTP_ACCEPT', $accept);
+                    $_SERVER['HTTP_ACCEPT'] = $accept;
+
+                    if ($callback) {
+                        call_user_func($callback, $request);
+                    }
+                }
+            }
+        });
+    }
+
+    /**
      * Get file extension for MIME type.
      *
      * @param  string  $mimeType
