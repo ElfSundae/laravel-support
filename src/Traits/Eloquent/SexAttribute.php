@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits;
+namespace ElfSundae\Laravel\Support\Traits\Eloquent;
 
 use ElfSundae\Laravel\Support\Constants\Sex;
 
