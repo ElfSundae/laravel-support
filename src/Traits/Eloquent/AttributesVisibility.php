@@ -8,22 +8,6 @@ namespace ElfSundae\Laravel\Support\Traits\Eloquent;
 trait AttributesVisibility
 {
     /**
-     * Set the hidden attributes for the model.
-     *
-     * @param  array  $hidden
-     * @return $this
-     */
-    abstract public function setHidden(array $hidden);
-
-    /**
-     * Set the visible attributes for the model.
-     *
-     * @param  array  $visible
-     * @return $this
-     */
-    abstract public function setVisible(array $visible);
-
-    /**
      * The shared attributes that should be hidden for serialization.
      *
      * @var array
@@ -100,20 +84,30 @@ trait AttributesVisibility
     }
 
     /**
-     * Convert the model instance to an array.
+     * Get the hidden attributes for the model.
      *
      * @return array
      */
-    public function toArray()
+    public function getHidden()
     {
         if (is_array(static::$sharedHidden)) {
-            $this->setHidden(static::$sharedHidden);
+            return static::$sharedHidden;
         }
 
+        return parent::getHidden();
+    }
+
+    /**
+     * Get the visible attributes for the model.
+     *
+     * @return array
+     */
+    public function getVisible()
+    {
         if (is_array(static::$sharedVisible)) {
-            $this->setVisible(static::$sharedVisible);
+            return static::$sharedVisible;
         }
 
-        return parent::toArray();
+        return parent::getVisible();
     }
 }
