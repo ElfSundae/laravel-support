@@ -72,7 +72,7 @@ return [
     |
     | You may configure a fake app client for local testing.
     |
-    | See Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()
+    | See `Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()`.
     |
     */
 
