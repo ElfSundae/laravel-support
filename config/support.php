@@ -67,6 +67,29 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Fake App Client
+    |--------------------------------------------------------------------------
+    |
+    | You may configure a fake app client for local testing.
+    |
+    | See Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()
+    |
+    */
+
+    'fake_app_client' => [
+        'os' => 'iOS',
+        'osVersion' => '9.3.3',
+        'platform' => 'iPhone7,1',
+        'locale' => 'zh_CN',
+        'app' => 'FakeAppClient',
+        'appVersion' => '1.0.0',
+        'appChannel' => 'App Store',
+        'network' => 'WiFi',
+        'udid' => '000000000000000000000000000000',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Int2string
     |--------------------------------------------------------------------------
     |
@@ -127,28 +150,6 @@ return [
     'google_analytics' => [
         'id' => env('GOOGLE_ANALYTICS_ID'),
         'cookie_domain' => env('GOOGLE_ANALYTICS_COOKIE_DOMAIN', 'auto'),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Fake App Client
-    |--------------------------------------------------------------------------
-    |
-    | You may configure a fake app client for local testing.
-    | See Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()
-    |
-    */
-
-    'fake_app_client' => [
-        'os' => 'iOS',
-        'osVersion' => '9.3.3',
-        'platform' => 'iPhone7,1',
-        'locale' => 'zh_CN',
-        'app' => 'FakeAppClient',
-        'appVersion' => '1.0.0',
-        'appChannel' => 'App Store',
-        'network' => 'WiFi',
-        'udid' => '000000000000000000000000000000',
     ],
 
 ];
