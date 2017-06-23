@@ -3,6 +3,8 @@
 namespace ElfSundae\Laravel\Support\Providers;
 
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use ElfSundae\Laravel\Support\Helper;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Set locale for Carbon.
+     *
+     * @return bool
      */
     protected function setLocaleForCarbon()
     {
@@ -33,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         array_map([$this->app, 'register'], $this->getServiceProviders());
+
+        $this->modifyCurrentRequest();
     }
 
     /**
@@ -53,5 +59,30 @@ class AppServiceProvider extends ServiceProvider
         }
 
         return $providers;
+    }
+
+    /**
+     * Modify the current request.
+     *
+     * @return void
+     */
+    protected function modifyCurrentRequest()
+    {
+        Helper::addAcceptableJsonType(
+            function (Request $request) {
+                return $this->shouldAddAcceptableJsonType($request);
+            }
+        );
+    }
+
+    /**
+     * Determines appending JSON type to the "Accept" header for the current request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return bool
+     */
+    protected function shouldAddAcceptableJsonType(Request $request)
+    {
+        return is_app('api');
     }
 }
