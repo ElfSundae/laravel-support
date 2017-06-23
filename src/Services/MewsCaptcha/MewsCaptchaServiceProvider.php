@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Services\Captcha;
+namespace ElfSundae\Laravel\Support\Services\MewsCaptcha;
 
 use Mews\Captcha\CaptchaServiceProvider as ServiceProvider;
 
