@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     protected function setLocaleForCarbon()
     {
         return Carbon::setLocale(
-            $this->app['config']->get('support.carbon_locale', $this->app->getLocale())
+            config('support.carbon_locale', $this->app->getLocale())
         );
     }
 
@@ -108,7 +108,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function shouldFakeAppClient()
     {
-        return $this->app['config']->get('app.debug') &&
+        return config('app.debug') &&
             $this->app->isLocal() &&
             $this->app['request']->ip() === '127.0.0.1' &&
             $this->isApiRequest();
@@ -146,7 +146,7 @@ class AppServiceProvider extends ServiceProvider
     protected function getUserAgentForFakingAppClient()
     {
         $clientData = urlsafe_base64_encode(json_encode(
-            $this->app['config']->get('support.fake_app_client', [])
+            config('support.fake_app_client', [])
         ));
 
         $userAgent = $this->app['request']->header('User-Agent');
