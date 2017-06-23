@@ -72,19 +72,20 @@ return [
     |
     | You may configure a fake app client for local testing.
     |
-    | See `Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()`.
+    | See `Agent\Client::getAppClientAttributes()` and
+    | `Support\Providers\AppServiceProvider::getUserAgentForFakeAppClient()`.
     |
     */
 
     'fake_app_client' => [
         'os' => 'iOS',
-        'osVersion' => '9.3.3',
-        'platform' => 'iPhone7,1',
-        'locale' => 'zh_CN',
+        'osV' => '9.3.3',
+        'pf' => 'iPhone7,1',
+        'loc' => 'zh_CN',
         'app' => 'FakeAppClient',
-        'appVersion' => '1.0.0',
-        'appChannel' => 'App Store',
-        'network' => 'WiFi',
+        'appV' => '1.0.0',
+        'appC' => 'App Store',
+        'net' => 'WiFi',
         'udid' => '000000000000000000000000000000',
     ],
 
