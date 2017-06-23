@@ -31,6 +31,7 @@ return [
     */
 
     'cookie_domain' => [
+        'web' => env('SESSION_DOMAIN', null),
         'admin' => env('SESSION_DOMAIN_ADMIN', null),
         'api' => env('SESSION_DOMAIN_API', null),
     ],
