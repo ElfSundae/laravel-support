@@ -67,11 +67,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Faker Locale
+    | Faker Provider Locale
     |--------------------------------------------------------------------------
     |
-    | The Faker locale for factories.
-    | See: `Illuminate\Database\DatabaseServiceProvider`.
+    | All avaliable locales are located in
+    | "/vendor/fzaninotto/faker/src/Faker/Provider" directory.
     |
     */
 

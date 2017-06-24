@@ -69,6 +69,7 @@ class SupportServiceProvider extends ServiceProvider
             return parse_url($value, PHP_URL_HOST) ?: null;
         }, $config['support.url']);
 
+        // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
         $config['app.faker_locale'] = $config['support.faker_locale'];
     }
 
