@@ -68,6 +68,8 @@ class SupportServiceProvider extends ServiceProvider
         $config['support.domain'] = array_map(function ($value) {
             return parse_url($value, PHP_URL_HOST) ?: null;
         }, $config['support.url']);
+
+        $config['app.faker_locale'] = $config['support.faker_locale'];
     }
 
     /**
