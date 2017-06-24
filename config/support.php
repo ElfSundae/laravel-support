@@ -8,8 +8,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may define all of your application URLs, with format
-    | "identifier => url". The domain of each URL is avaliable in
-    | "app.domains" configuration.
+    | "identifier => url". The domain of each URL will be avaliable in
+    | "support.domain" configuration.
     |
     */
 

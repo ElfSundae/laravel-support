@@ -77,7 +77,7 @@ if (! function_exists('is_app')) {
      */
     function is_app($identifier)
     {
-        return app('request')->getHost() === config('app.domains.'.$identifier);
+        return app('request')->getHost() === config('support.domain.'.$identifier);
     }
 }
 

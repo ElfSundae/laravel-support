@@ -65,11 +65,8 @@ class SupportServiceProvider extends ServiceProvider
     {
         $config = $this->app['config'];
 
-        // Append "app.domains" config
-        $config['app.domains'] = array_map(function ($value) {
-            if (is_string($domain = parse_url($value, PHP_URL_HOST))) {
-                return $domain;
-            }
+        $config['support.domain'] = array_map(function ($value) {
+            return parse_url($value, PHP_URL_HOST) ?: null;
         }, $config['support.url']);
     }
 
@@ -83,7 +80,7 @@ class SupportServiceProvider extends ServiceProvider
         $config = $this->app['config'];
         $request = $this->app['request'];
 
-        $identifier = array_search($request->getHost(), $config['app.domains']);
+        $identifier = array_search($request->getHost(), $config['support.domain']);
 
         if ($identifier && $config->has('support.cookie_domain.'.$identifier)) {
             $config['session.domain'] = $config['support.cookie_domain.'.$identifier];
