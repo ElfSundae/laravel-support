@@ -10,14 +10,14 @@ trait AttributesVisibility
     /**
      * The shared attributes that should be hidden for serialization.
      *
-     * @var array
+     * @var array|null
      */
     public static $sharedHidden;
 
     /**
      * The shared attributes that should be visible in serialization.
      *
-     * @var array
+     * @var array|null
      */
     public static $sharedVisible;
 
