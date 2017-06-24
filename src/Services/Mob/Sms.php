@@ -21,7 +21,9 @@ class Sms
     public static function verify($credentials = [])
     {
         $response = (new HttpClient('https://webapi.sms.mob.com/'))
-            ->formParams(array_merge($credentials, ['appkey' => config('services.mobsms.key')]))
+            ->formParams(array_merge($credentials, [
+                'appkey' => config('services.mobsms.key'),
+            ]))
             ->fetchJson('/sms/verify', 'POST');
 
         if (! is_array($response)) {
