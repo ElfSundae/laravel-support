@@ -7,4 +7,4 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/elfsundae/laravel-support/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/elfsundae/laravel-support/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/elfsundae/laravel-support.svg?style=flat-square)](https://packagist.org/packages/elfsundae/laravel-support)
 
-> **Only for my own use.**
+# :warning: Only for my own use.
