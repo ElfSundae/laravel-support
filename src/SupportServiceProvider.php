@@ -71,6 +71,8 @@ class SupportServiceProvider extends ServiceProvider
 
         // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
         $config['app.faker_locale'] = $config['support.faker_locale'];
+
+        $config['cache.prefix'] = $config('support.cache_key_prefix');
     }
 
     /**
