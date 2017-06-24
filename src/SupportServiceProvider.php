@@ -65,23 +65,14 @@ class SupportServiceProvider extends ServiceProvider
     {
         $config = $this->app['config'];
 
-        $this->mergeConfigForKey(
-            'support.domain',
-            array_map(function ($value) {
-                return parse_url($value, PHP_URL_HOST) ?: null;
-            }, $config->get('support.url', []))
-        );
+        $config['support.domain'] = array_map(function ($value) {
+            return parse_url($value, PHP_URL_HOST) ?: null;
+        }, $config['support.url']);
 
         // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
-        $this->mergeConfigForKey(
-            'app.faker_locale',
-            $config->get('support.faker_locale')
-        );
+        $config['app.faker_locale'] = $config['support.faker_locale'];
 
-        $this->mergeConfigForKey(
-            'cache.prefix',
-            $config->get('support.cache_key_prefix')
-        );
+        $config['cache.prefix'] = $config('support.cache_key_prefix');
     }
 
     /**
