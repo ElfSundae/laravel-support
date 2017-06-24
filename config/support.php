@@ -143,7 +143,7 @@ return [
     | Google Analytics
     |--------------------------------------------------------------------------
     |
-    | id : 'UA-xxxxxxxx-x'
+    | id : 'UA-XXXX-Y'
     | cookie_domain : 'auto' // 'none' // 'example.com'
     |
     */
