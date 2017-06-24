@@ -72,26 +72,7 @@ class SupportServiceProvider extends ServiceProvider
         // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
         $config['app.faker_locale'] = $config['support.faker_locale'];
 
-        $config['cache.prefix'] = $config['support.cache_key_prefix'];
-
-        $config['datatables.engines.eloquent'] = 'ElfSundae\Laravel\Datatables\Engines\EloquentEngine';
-        $config['datatables-buttons.namespace.model'] = 'Models';
-        $config['datatables-buttons.stub'] = '/vendor/elfsundae/laravel-datatables/src/stubs';
-
-        $config['ide-helper.include_fluent'] = true;
-        $config['ide-helper.include_helpers'] = true;
-        $this->mergeConfigForKey('ide-helper.helper_files', [
-            $this->app->basePath().'/vendor/elfsundae/laravel-support/src/helpers.php',
-            $this->app->basePath().'/vendor/elfsundae/laravel-support/src/Services/Optimus/helpers.php',
-            $this->app->basePath().'/vendor/elfsundae/laravel-helpers/src/helpers.php',
-            $this->app->basePath().'/vendor/elfsundae/laravel-api/src/helpers.php',
-            $this->app->basePath().'/vendor/elfsundae/laravel-bearychat/src/helpers.php',
-        ]);
-        $this->mergeConfigForKey('ide-helper.custom_db_types', [
-            'mysql' => [
-                'json' => 'json_array',
-            ],
-        ]);
+        $config['cache.prefix'] = $config('support.cache_key_prefix');
     }
 
     /**
