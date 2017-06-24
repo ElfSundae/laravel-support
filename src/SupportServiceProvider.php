@@ -65,12 +65,10 @@ class SupportServiceProvider extends ServiceProvider
     {
         $config = $this->app['config'];
 
-        // Append "app.domains"
+        // Append "app.domains" config
         $config['app.domains'] = array_map(function ($value) {
             if (is_string($domain = parse_url($value, PHP_URL_HOST))) {
-                if (str_contains($domain, '.')) {
-                    return $domain;
-                }
+                return $domain;
             }
         }, $config['support.url']);
     }
