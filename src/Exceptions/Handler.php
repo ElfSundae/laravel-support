@@ -4,7 +4,7 @@ namespace ElfSundae\Laravel\Support\Exceptions;
 
 use Exception;
 use Psr\Log\LoggerInterface;
-use ElfSundae\Laravel\Api\Http\ApiResponse;
+use ElfSundae\Laravel\Api\ApiResponse;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -182,7 +182,7 @@ class Handler extends ExceptionHandler
      * Create an API response for the given exception.
      *
      * @param  \Exception  $e
-     * @return \ElfSundae\Laravel\Api\Http\ApiResponse
+     * @return \ElfSundae\Laravel\Api\ApiResponse
      */
     protected function convertExceptionToApiResponse(Exception $e)
     {
@@ -197,7 +197,7 @@ class Handler extends ExceptionHandler
      * @param  mixed  $message
      * @param  int  $code
      * @param  \Exception  $e
-     * @return \ElfSundae\Laravel\Api\Http\ApiResponse
+     * @return \ElfSundae\Laravel\Api\ApiResponse
      */
     protected function createApiResponse($message, $code, Exception $e)
     {
