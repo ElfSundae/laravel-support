@@ -4,6 +4,7 @@ namespace ElfSundae\Laravel\Support\Http\Middleware;
 
 use Closure;
 use ElfSundae\Laravel\Agent\Facades\AgentClient;
+use ElfSundae\Laravel\Api\Exceptions\ApiResponseException;
 
 class CheckAppClient
 {
@@ -17,7 +18,7 @@ class CheckAppClient
     public function handle($request, Closure $next)
     {
         if (! AgentClient::is('AppClient')) {
-            return response('Unauthorized Client', 403);
+            throw new ApiResponseException('Unauthorized Client', 403);
         }
 
         if (
