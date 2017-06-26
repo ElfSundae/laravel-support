@@ -22,7 +22,7 @@
         "elfsundae/intervention-image": "~1.0",
         "elfsundae/laravel-agent": "~2.1",
         "elfsundae/laravel-api": "~1.1",
-        "elfsundae/laravel-datatables": "~1.0",
+        "elfsundae/laravel-datatables": "~1.1",
         "elfsundae/laravel-helper": "~1.2",
         "elfsundae/xgpusher": "~1.0",
         "guzzlehttp/guzzle": "~6.3",
