@@ -5,20 +5,27 @@ namespace ElfSundae\Laravel\Support\Traits;
 /**
  * Transfer keys for `MyCLabs\Enum\Enum`.
  *
- * Define the property `static $transferKeys = []` in your class to
- * provide transferred keys.
+ * protected static $transferKeys = [
+ *     'original_key' => 'transferred_key',
+ * ];
  */
 trait EnumTransferKeys
 {
     /**
-     * Return key for value.
+     * Get the transfer keys.
      *
-     * @param $value
-     * @return mixed
+     * @return array
      */
-    public static function search($value)
+    protected static function transferKeys()
     {
-        return static::getTransferredKey(parent::search($value));
+        if (
+            property_exists(get_called_class(), 'transferKeys') &&
+            is_array(static::$transferKeys)
+        ) {
+            return static::$transferKeys;
+        }
+
+        return [];
     }
 
     /**
@@ -29,14 +36,19 @@ trait EnumTransferKeys
      */
     protected static function getTransferredKey($key)
     {
-        if (
-            property_exists(get_called_class(), 'transferKeys') &&
-            is_array(static::$transferKeys) &&
-            isset(static::$transferKeys[$key])
-        ) {
-            return static::$transferKeys[$key];
-        }
+        return static::transferKeys()[$key] ?? $key;
+    }
 
-        return $key;
+    /**
+     * Get the original key.
+     *
+     * @param  mixed  $key
+     * @return mixed
+     */
+    protected static function getOriginalKey($key)
+    {
+        $originalKey = array_search($key, static::transferKeys(), true);
+
+        return $originalKey !== false ? $originalKey : $key;
     }
 }
