@@ -73,6 +73,8 @@ class SupportServiceProvider extends ServiceProvider
         $config['app.faker_locale'] = $config['support.faker_locale'];
 
         $config['cache.prefix'] = $config['support.cache_key_prefix'];
+
+        $config['filesystems.disks.public.url'] = $config['support.url.asset'].'/storage';
     }
 
     /**
