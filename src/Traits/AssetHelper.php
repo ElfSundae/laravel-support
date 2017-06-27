@@ -26,15 +26,7 @@ trait AssetHelper
      */
     protected function getAssetUrl($path, $identifier = null)
     {
-        if (empty($path)) {
-            return;
-        }
-
-        if (filter_var($path, FILTER_VALIDATE_URL) !== false) {
-            return $path;
-        }
-
-        return asset_url($this->getFilesystem($identifier)->url($path));
+        return $this->getFilesystem($identifier)->url($path);
     }
 
     /**
