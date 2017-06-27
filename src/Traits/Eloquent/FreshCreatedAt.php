@@ -22,7 +22,7 @@ trait FreshCreatedAt
     /**
      * Boot the trait.
      *
-     * Add a creating observer, set the value of the "created at" attribute.
+     * Add a creating observer, set the value of the "created_at" attribute.
      */
     protected static function bootFreshCreatedAt()
     {
