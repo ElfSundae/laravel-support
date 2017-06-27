@@ -34,7 +34,7 @@ trait AssetHelper
             return $path;
         }
 
-        return asset_url($this->getFilesystem($identifier)->url($path));
+        return $this->getFilesystem($identifier)->url($path);
     }
 
     /**
