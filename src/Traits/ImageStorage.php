@@ -98,7 +98,7 @@ trait ImageStorage
      */
     protected function getImageNestedDirectory($identifier = null)
     {
-        return dechex((int) date('Y') - 2010).'/'.dechex(date('W'));
+        return dechex((int) date('Y') - 2000).'/'.dechex((int) date('W'));
     }
 
     /**
