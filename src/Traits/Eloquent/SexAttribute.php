@@ -14,7 +14,7 @@ trait SexAttribute
      */
     public function getSexAttribute($value)
     {
-        return Sex::string($value);
+        return Sex::key($value);
     }
 
     /**
@@ -24,6 +24,6 @@ trait SexAttribute
      */
     public function setSexAttribute($value)
     {
-        $this->attributes['sex'] = Sex::type($value);
+        $this->attributes['sex'] = Sex::value($value);
     }
 }
