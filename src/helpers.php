@@ -1,6 +1,5 @@
 <?php
 
-use Ramsey\Uuid\Uuid;
 
 if (! function_exists('revision')) {
     /**
@@ -16,21 +15,6 @@ if (! function_exists('revision')) {
         }
 
         return $path;
-    }
-}
-
-if (! function_exists('random_uuid')) {
-    /**
-     * Generate a version 4 (random) UUID.
-     *
-     * @param  bool  $hex
-     * @return string
-     */
-    function random_uuid($hex = false)
-    {
-        $uuid = Uuid::uuid4();
-
-        return $hex ? $uuid->getHex() : $uuid->toString();
     }
 }
 
