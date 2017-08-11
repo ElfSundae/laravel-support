@@ -9,7 +9,7 @@ class Sex extends Enum
 {
     use EnumKeyString;
 
-    const UNKNOWN = 0;
+    const UNKNOWN = null;
     const MALE = 1;
     const FEMALE = 2;
 
