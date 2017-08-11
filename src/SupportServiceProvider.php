@@ -75,26 +75,6 @@ class SupportServiceProvider extends ServiceProvider
     }
 
     /**
-     * Merge config data for the given key.
-     *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @return void
-     */
-    protected function mergeConfigForKey($key, $value)
-    {
-        $config = $this->app['config']->get($key);
-
-        if (is_array($config) && is_array($value)) {
-            $config = array_merge($config, $value);
-        } else {
-            $config = $value;
-        }
-
-        $this->app['config']->set($key, $config);
-    }
-
-    /**
      * Configure application for the current request.
      *
      * @return void
