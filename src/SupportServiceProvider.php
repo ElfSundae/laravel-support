@@ -2,7 +2,6 @@
 
 namespace ElfSundae\Laravel\Support;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
