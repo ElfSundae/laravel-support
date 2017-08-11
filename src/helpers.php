@@ -1,6 +1,5 @@
 <?php
 
-
 if (! function_exists('revision')) {
     /**
      * Get the revisioned asset path.
