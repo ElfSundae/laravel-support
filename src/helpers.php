@@ -22,11 +22,11 @@ if (! function_exists('app_url')) {
      * Generate an absolute URL to the given path.
      *
      * @param  string  $path
-     * @param  mixed  $query
      * @param  string  $identifier
+     * @param  mixed  $query
      * @return string
      */
-    function app_url($path = '', $query = [], $identifier = '')
+    function app_url($path = '', $identifier = '', $query = [])
     {
         $path = trim($path, '/');
         if (! empty($path)) {
@@ -40,7 +40,7 @@ if (! function_exists('app_url')) {
             }
         }
 
-        $root = $identifier ? config('support.url.'.$identifier) : config('app.url');
+        $root = config('support.url.'.$identifier, config('app.url'));
 
         return $root.$path;
     }
