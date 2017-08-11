@@ -8,27 +8,6 @@ use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 class Helper
 {
     /**
-     * Trim strings for the request's inputs.
-     *
-     * @see https://gist.github.com/drakakisgeo/3bba2a2600b4c554f836#gistcomment-1744670
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Request
-     */
-    public static function trimRequestInputs(Request $request)
-    {
-        $inputs = $request->input();
-
-        array_walk_recursive($inputs, function (&$value) {
-            $value = trim($value);
-        });
-
-        $request->merge($inputs);
-
-        return $request;
-    }
-
-    /**
      * Add JSON type to the "Accept" header for the current request.
      *
      * @see https://laravel-china.org/topics/3430/modify-request-headers-incomplete-raiders
