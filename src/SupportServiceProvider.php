@@ -66,7 +66,7 @@ class SupportServiceProvider extends ServiceProvider
         $config = $this->app['config'];
 
         $config['support.domain'] = array_map(function ($value) {
-            return parse_url($value, PHP_URL_HOST) ?: null;
+            return parse_url($value, PHP_URL_HOST);
         }, $config->get('support.url', []));
 
         // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
