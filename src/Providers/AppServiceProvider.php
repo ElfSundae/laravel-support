@@ -2,7 +2,6 @@
 
 namespace ElfSundae\Laravel\Support\Providers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use ElfSundae\Laravel\Support\Helper;
 use Illuminate\Support\ServiceProvider;
@@ -16,19 +15,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->setLocaleForCarbon();
-    }
-
-    /**
-     * Set locale for Carbon.
-     *
-     * @return bool
-     */
-    protected function setLocaleForCarbon()
-    {
-        return Carbon::setLocale(
-            config('support.carbon_locale', $this->app->getLocale())
-        );
     }
 
     /**

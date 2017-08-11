@@ -2,6 +2,7 @@
 
 namespace ElfSundae\Laravel\Support;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
@@ -86,6 +87,10 @@ class SupportServiceProvider extends ServiceProvider
             $config = $this->app['config']->get('support.config.'.$identifier)
         ) {
             $this->app['config']->set($config);
+        }
+
+        if ($carbonLocale = $this->app['config']['support.carbon_locale']) {
+            Carbon::setLocale($carbonLocale);
         }
     }
 
