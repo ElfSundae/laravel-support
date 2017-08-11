@@ -35,6 +35,7 @@ return [
             'app.timezone' => 'Asia/Shanghai',
             'app.locale' => 'zh-CN',
             'app.faker_locale' => 'zh_CN',
+            'app.log' => env('APP_LOG', 'daily'),
 
             'auth.guards.admin' => [
                 'driver' => 'session',
