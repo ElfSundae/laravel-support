@@ -77,7 +77,11 @@ if (! function_exists('is_app')) {
      */
     function is_app($identifier)
     {
-        return app('request')->getHost() === config('support.domain.'.$identifier);
+        return ($appUrl = config('support.url.'.$identifier)) &&
+            starts_with(
+                preg_replace('#^https?://#', '', app('request')->url()),
+                preg_replace('#^https?://#', '', $appUrl)
+            );
     }
 }
 
