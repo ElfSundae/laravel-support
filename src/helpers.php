@@ -34,40 +34,6 @@ if (! function_exists('random_uuid')) {
     }
 }
 
-if (! function_exists('gravatar')) {
-    /**
-     * Generate a Gravatar url.
-     *
-     * @see https://en.gravatar.com/site/implement/images/
-     *
-     * @param  string  $email
-     * @param  int  $size
-     * @param  string  $default
-     * @param  string  $rating
-     * @return string
-     */
-    function gravatar($email, $size = 120, $default = null, $rating = null)
-    {
-        if (is_null($default)) {
-            $default = config('support.gravatar.default');
-        }
-
-        if (is_null($rating)) {
-            $rating = config('support.gravatar.rating');
-        }
-
-        $query = http_build_query(array_filter(compact('size', 'default', 'rating')));
-        if ($query) {
-            $query = '?'.$query;
-        }
-
-        return app('url')->assetFrom(
-            config('support.gravatar.host', 'https://www.gravatar.com/avatar'),
-            md5(strtolower(trim($email))).$query
-        );
-    }
-}
-
 if (! function_exists('is_app')) {
     /**
      * Determine the current sub application.
