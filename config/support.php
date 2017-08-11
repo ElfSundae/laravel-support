@@ -7,8 +7,8 @@ return [
     | Application URLs
     |--------------------------------------------------------------------------
     |
-    | Here you may define all of your application URLs, with format
-    | "identifier => url". The domain of each URL will be avaliable in
+    | Here you may specify the root URL for each sub application.
+    | The domain of each URL will be avaliable under
     | "support.domain" configuration.
     |
     */
@@ -23,48 +23,75 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Domains
+    | Application Configuration
     |--------------------------------------------------------------------------
     |
-    | Here you may define the cookie domain for a special application identifier.
+    | Here you may override the default configuration for each sub application.
     |
     */
 
-    'cookie_domain' => [
-        'web' => env('SESSION_DOMAIN', null),
-        'admin' => env('SESSION_DOMAIN_ADMIN', null),
-        'api' => env('SESSION_DOMAIN_API', null),
-    ],
+    'config' => [
+        'default' => [
+            'app.timezone' => 'Asia/Shanghai',
+            'app.locale' => 'zh-CN',
+            'app.faker_locale' => 'zh_CN',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentications Defaults
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define the authentication "guard" and password reset options
-    | for a special application identifier.
-    |
-    */
+            'auth.guards.admin' => [
+                'driver' => 'session',
+                'provider' => 'admin_users',
+            ],
+            'auth.providers.users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\User::class,
+            ],
+            'auth.providers.admin_users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\AdminUser::class,
+            ],
+            'auth.passwords.admin_users' => [
+                'provider' => 'admin_users',
+                'table' => 'admin_password_resets',
+                'expire' => 60,
+            ],
 
-    'auth' => [
+            'cache.prefix' => env('CACHE_PREFIX', 'laravel'),
+
+            'database.connections.mysql.collation' => 'utf8mb4_general_ci',
+            'database.connections.mysql.modes' => [
+                'ONLY_FULL_GROUP_BY',
+                // 'STRICT_TRANS_TABLES',
+                'NO_ZERO_IN_DATE',
+                'NO_ZERO_DATE',
+                'ERROR_FOR_DIVISION_BY_ZERO',
+                'NO_AUTO_CREATE_USER',
+                'NO_ENGINE_SUBSTITUTION',
+            ],
+            'database.redis.default.database' => 1,
+            'database.redis.sessions' => [
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'password' => env('REDIS_PASSWORD', null),
+                'port' => env('REDIS_PORT', 6379),
+                'database' => 2,
+            ],
+
+            'filesystems.disks.public.url' => env('APP_URL_ASSET', env('APP_URL')).'/storage',
+
+            'session.connection' => 'sessions',
+            'session.cookie' => env('SESSION_COOKIE', 'laravel_session'),
+        ],
+
         'admin' => [
-            'guard' => 'admin',
-            'passwords' => 'admin_users',
+            'auth.defaults' => [
+                'guard' => 'admin',
+                'passwords' => 'admin_users',
+            ],
+            'session.domain' => env('SESSION_DOMAIN_ADMIN', null),
+        ],
+
+        'api' => [
+            'session.domain' => env('SESSION_DOMAIN_API', null),
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Cache Key Prefix
-    |--------------------------------------------------------------------------
-    |
-    | When utilizing a RAM based store such as APC or Memcached, there might
-    | be other applications utilizing the same cache. So, we'll specify a
-    | value to get prefixed to all our keys so we can avoid collisions.
-    |
-    */
-
-    'cache_key_prefix' => env('CACHE_KEY_PREFIX', 'laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,18 +104,6 @@ return [
     */
 
     'carbon_locale' => 'zh',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Faker Provider Locale
-    |--------------------------------------------------------------------------
-    |
-    | All avaliable locales are located in
-    | "/vendor/fzaninotto/faker/src/Faker/Provider" directory.
-    |
-    */
-
-    'faker_locale' => 'zh_CN',
 
     /*
     |--------------------------------------------------------------------------

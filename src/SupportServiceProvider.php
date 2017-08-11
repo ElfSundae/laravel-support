@@ -2,6 +2,8 @@
 
 namespace ElfSundae\Laravel\Support;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
@@ -69,12 +71,7 @@ class SupportServiceProvider extends ServiceProvider
             return parse_url($value, PHP_URL_HOST);
         }, $config->get('support.url', []));
 
-        // Illuminate\Database\DatabaseServiceProvider reads "app.faker_locale" config
-        $config['app.faker_locale'] = $config['support.faker_locale'];
-
-        $config['cache.prefix'] = $config['support.cache_key_prefix'];
-
-        $config['filesystems.disks.public.url'] = $config['support.url.asset'].'/storage';
+        $config->set($config->get('support.config.default', []));
     }
 
     /**
@@ -104,18 +101,46 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function configureForCurrentRequest()
     {
-        $config = $this->app['config'];
-        $request = $this->app['request'];
+        $identifier = $this->getCurrentAppIdentifier();
 
-        $identifier = array_search($request->getHost(), $config['support.domain']);
-
-        if ($identifier && $config->has('support.cookie_domain.'.$identifier)) {
-            $config['session.domain'] = $config['support.cookie_domain.'.$identifier];
+        if ($identifier &&
+            $config = $this->app['config']->get('support.config.'.$identifier)
+        ) {
+            $this->app['config']->set($config);
         }
+    }
 
-        if ($identifier && is_array($auth = $config['support.auth.'.$identifier])) {
-            $config['auth.defaults'] = $auth;
+    /**
+     * Get the current sub application identifier.
+     *
+     * @return string|null
+     */
+    protected function getCurrentAppIdentifier()
+    {
+        $requestUrl = $this->removeUrlScheme($this->app['request']->url());
+
+        $apps = array_map(
+            [$this, 'removeUrlScheme'],
+            $this->app['config']->get('support.url', [])
+        );
+        arsort($apps);
+
+        foreach ($apps as $id => $url) {
+            if (Str::startsWith($requestUrl, $url)) {
+                return $id;
+            }
         }
+    }
+
+    /**
+     * Remove the scheme for the given URL.
+     *
+     * @param  string  $url
+     * @return string
+     */
+    protected function removeUrlScheme($url)
+    {
+        return preg_replace('#^https?://#', '', $url);
     }
 
     /**

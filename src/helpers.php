@@ -70,7 +70,7 @@ if (! function_exists('gravatar')) {
 
 if (! function_exists('is_app')) {
     /**
-     * Check the current application identifier.
+     * Determine the current sub application.
      *
      * @param  string  $identifier
      * @return bool
