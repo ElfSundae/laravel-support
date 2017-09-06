@@ -3,9 +3,9 @@
 namespace ElfSundae\Laravel\Support\Http\Middleware;
 
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Routing\Middleware\ThrottleRequests as BaseMiddleware;
+use Illuminate\Routing\Middleware\ThrottleRequests as Middleware;
 
-class ThrottleRequests extends BaseMiddleware
+class ThrottleRequests extends Middleware
 {
     /**
      * {@inheritdoc}

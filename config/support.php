@@ -78,7 +78,6 @@ return [
             'filesystems.disks.public.url' => env('APP_URL_ASSET', env('APP_URL')).'/storage',
 
             'session.connection' => 'sessions',
-            'session.cookie' => env('SESSION_COOKIE', 'laravel_session'),
         ],
 
         'admin' => [

@@ -38,13 +38,13 @@ class AppServiceProvider extends ServiceProvider
     {
         $providers = [];
 
-        if (is_app('admin') || $this->app->runningInConsole()) {
-            array_push(
-                $providers,
-                \ElfSundae\Laravel\Datatables\DatatablesServiceProvider::class,
-                \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class
-            );
-        }
+        // if (is_app('admin') || $this->app->runningInConsole()) {
+        //     array_push(
+        //         $providers,
+        //         \ElfSundae\Laravel\Datatables\DatatablesServiceProvider::class,
+        //         \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class
+        //     );
+        // }
 
         return $providers;
     }
