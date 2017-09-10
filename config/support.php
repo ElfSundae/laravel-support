@@ -55,8 +55,6 @@ return [
                 'expire' => 60,
             ],
 
-            'cache.prefix' => env('CACHE_PREFIX', 'laravel'),
-
             'database.connections.mysql.collation' => 'utf8mb4_general_ci',
             'database.connections.mysql.modes' => [
                 'ONLY_FULL_GROUP_BY',
