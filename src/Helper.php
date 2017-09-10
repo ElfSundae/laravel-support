@@ -2,7 +2,6 @@
 
 namespace ElfSundae\Laravel\Support;
 
-use Ramsey\Uuid\Uuid;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
@@ -38,19 +37,6 @@ class Helper
             config('support.gravatar.host', 'https://www.gravatar.com/avatar'),
             md5(strtolower(trim($email))).$query
         );
-    }
-
-    /**
-     * Generate a version 4 (random) UUID.
-     *
-     * @param  bool  $hex
-     * @return string
-     */
-    public static function uuid($hex = false)
-    {
-        $uuid = Uuid::uuid4();
-
-        return $hex ? $uuid->getHex() : $uuid->toString();
     }
 
     /**
