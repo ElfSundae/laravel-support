@@ -62,7 +62,7 @@
         "elfsundae/laravel-agent": "~2.2",
         "elfsundae/laravel-api": "dev-master",
         "elfsundae/laravel-datatables": "dev-master",
-        "elfsundae/laravel-captcha": "dev-master",
+        "elfsundae/laravel-captcha": "^2.2",
         "elfsundae/intervention-image": "~1.0",
         "elfsundae/xgpusher": "~1.1",
         "vinkla/hashids": "~3.3",
