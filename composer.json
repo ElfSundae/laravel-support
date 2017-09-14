@@ -60,7 +60,7 @@
         "elfsundae/uuid": "~1.0",
         "elfsundae/laravel-helper": "~1.3",
         "elfsundae/laravel-agent": "~2.2",
-        "elfsundae/laravel-api": "dev-master",
+        "elfsundae/laravel-api": "~1.3",
         "elfsundae/laravel-datatables": "dev-master",
         "elfsundae/laravel-captcha": "^2.2",
         "elfsundae/intervention-image": "~1.0",
