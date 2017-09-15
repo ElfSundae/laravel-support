@@ -76,6 +76,13 @@ return [
             'filesystems.disks.public.url' => env('APP_URL_ASSET', env('APP_URL')).'/storage',
 
             'session.connection' => 'sessions',
+
+            'services.gravatar' => [
+                'url' => 'https://gravatar.cat.net/avatar',
+                'size' => '120',
+                'default' => 'identicon',
+                'rating' => 'pg',
+            ],
         ],
 
         'admin' => [
@@ -159,21 +166,6 @@ return [
         'prime' => env('OPTIMUS_PRIME'),
         'inverse' => env('OPTIMUS_INVERSE'),
         'random' => env('OPTIMUS_RANDOM'),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Gravatar Service
-    |--------------------------------------------------------------------------
-    |
-    | https://gravatar.com
-    |
-    */
-
-    'gravatar' => [
-        'host' => 'https://v2ex.assets.uxengine.net/gravatar',
-        'default' => 'identicon',
-        'rating' => 'pg',
     ],
 
     /*

@@ -15,6 +15,7 @@
     "require": {
         "php": ">=7.0.0",
         "doctrine/dbal": "~2.6",
+        "elfsundae/laravel-gravatar": "^1.0",
         "laravel/framework": "5.5.*",
         "myclabs/php-enum": "~1.5",
         "predis/predis": "~1.1"

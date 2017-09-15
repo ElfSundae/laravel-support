@@ -8,38 +8,6 @@ use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 class Helper
 {
     /**
-     * Generate a Gravatar URL.
-     *
-     * @see https://gravatar.com/site/implement/images/
-     *
-     * @param  string  $email
-     * @param  int  $size
-     * @param  string  $default
-     * @param  string  $rating
-     * @return string
-     */
-    public static function gravatar($email, $size = 120, $default = null, $rating = null)
-    {
-        if (is_null($default)) {
-            $default = config('support.gravatar.default');
-        }
-
-        if (is_null($rating)) {
-            $rating = config('support.gravatar.rating');
-        }
-
-        $query = http_build_query(array_filter(compact('size', 'default', 'rating')));
-        if ($query) {
-            $query = '?'.$query;
-        }
-
-        return app('url')->assetFrom(
-            config('support.gravatar.host', 'https://www.gravatar.com/avatar'),
-            md5(strtolower(trim($email))).$query
-        );
-    }
-
-    /**
      * Add JSON type to the "Accept" header for the current request.
      *
      * @see https://laravel-china.org/topics/3430/modify-request-headers-incomplete-raiders
