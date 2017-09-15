@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 class SupportServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap the application services.
      *
      * @return void
      */
@@ -17,17 +17,19 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'support');
 
-        $this->publishes([
-            __DIR__.'/../config/support.php' => config_path('support.php'),
-        ], 'laravel-support');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/support.php' => config_path('support.php'),
+            ], 'laravel-support-config');
 
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
-        ], 'laravel-support-views');
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
+            ], 'laravel-support-views');
+        }
     }
 
     /**
-     * Register the service.
+     * Register the application service.
      *
      * @return void
      */
@@ -37,10 +39,13 @@ class SupportServiceProvider extends ServiceProvider
 
         $this->setupConfigurations();
 
-        array_map([$this->app, 'register'], $this->getServiceProviders());
-
         if ($this->app->runningInConsole()) {
-            $this->registerForConsole();
+            $this->commands([
+                Console\Commands\AssetsVersion::class,
+                Console\Commands\GenerateIdeHelpers::class,
+                Console\Commands\GenerateInt2stringCharacters::class,
+                Console\Commands\MergeUpstream::class,
+            ]);
         }
     }
 
@@ -81,10 +86,9 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function configureForCurrentRequest()
     {
-        $identifier = $this->getCurrentAppIdentifier();
-
-        if ($identifier &&
-            $config = $this->app['config']->get('support.config.'.$identifier)
+        if (
+            ($identifier = $this->getCurrentAppIdentifier()) &&
+            $config = $this->app['config']['support.config.'.$identifier]
         ) {
             $this->app['config']->set($config);
         }
@@ -125,54 +129,5 @@ class SupportServiceProvider extends ServiceProvider
     protected function removeUrlScheme($url)
     {
         return preg_replace('#^https?://#', '', $url);
-    }
-
-    /**
-     * Get service providers to be registered.
-     *
-     * @return array
-     */
-    protected function getServiceProviders()
-    {
-        $providers = [];
-
-        if ($this->app->isLocal()) {
-            array_push(
-                $providers,
-                \Barryvdh\Debugbar\ServiceProvider::class
-            );
-
-            if ($this->app->runningInConsole()) {
-                array_push(
-                    $providers,
-                    \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
-                );
-            }
-        }
-
-        if ($this->app->runningInConsole()) {
-            array_push(
-                $providers,
-                \Laravel\Tinker\TinkerServiceProvider::class,
-                \Spatie\Backup\BackupServiceProvider::class
-            );
-        }
-
-        return $providers;
-    }
-
-    /**
-     * Register for console.
-     *
-     * @return void
-     */
-    protected function registerForConsole()
-    {
-        $this->commands([
-            Console\Commands\AssetsVersion::class,
-            Console\Commands\GenerateIdeHelpers::class,
-            Console\Commands\GenerateInt2stringCharacters::class,
-            Console\Commands\MergeUpstream::class,
-        ]);
     }
 }

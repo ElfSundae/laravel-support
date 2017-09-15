@@ -46,6 +46,11 @@
             "dev-master": "2.x-dev"
         },
         "laravel": {
+            "providers": [
+                "ElfSundae\\Laravel\\Support\\SupportServiceProvider"
+            ],
+            "aliases": {
+            },
             "dont-discover": [
             ]
         }
