@@ -3,8 +3,8 @@
 namespace ElfSundae\Laravel\Support\Providers;
 
 use Illuminate\Http\Request;
-use ElfSundae\Laravel\Support\Helper;
 use Illuminate\Support\ServiceProvider;
+use ElfSundae\Laravel\Api\Helper as ApiHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function modifyCurrentRequest()
     {
-        Helper::addAcceptableJsonType(function (Request $request) {
+        ApiHelper::addAcceptableJsonTypeForRequest($this->app, function ($request) {
             return $this->shouldAddAcceptableJsonType($request);
         });
 

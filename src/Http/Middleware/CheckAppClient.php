@@ -3,7 +3,7 @@
 namespace ElfSundae\Laravel\Support\Http\Middleware;
 
 use Closure;
-use ElfSundae\Laravel\Agent\Facades\AgentClient;
+use ElfSundae\Laravel\Agent\AgentClient;
 use ElfSundae\Laravel\Api\Exceptions\ApiResponseException;
 
 class CheckAppClient

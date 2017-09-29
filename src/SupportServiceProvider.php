@@ -37,7 +37,7 @@ class SupportServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/support.php', 'support');
 
-        $this->setupConfigurations();
+        $this->setupConfiguration();
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -54,7 +54,7 @@ class SupportServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function setupConfigurations()
+    protected function setupConfiguration()
     {
         if (! $this->app->configurationIsCached()) {
             $this->configureDefaults();
