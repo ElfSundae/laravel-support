@@ -92,6 +92,18 @@ return [
                 'bgImage' => true,
                 'fontColors' => ['#2c3e50', '#c0392b', '#16a085', '#c0392b', '#8e44ad', '#303f9f', '#f57c00', '#795548'],
             ],
+
+            'datatables.engines.eloquent' => \ElfSundae\Laravel\DataTables\EloquentDataTable::class,
+            'datatables-html.table' => [
+                'id' => 'dataTable',
+                'class' => 'table table-bordered table-hover dt-responsive',
+                'width' => '100%',
+            ],
+            'datatables-buttons.namespace.model' => 'Models',
+            'datatables-buttons.stub' => '/vendor/elfsundae/laravel-datatables/src/stubs',
+            'datatables-buttons.parameters' => [
+                'order' => [[0, 'desc']],
+            ],
         ],
 
         'admin' => [
