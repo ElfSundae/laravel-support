@@ -24,7 +24,7 @@ class MergeUpstream extends Command
      *
      * @var string
      */
-    protected $description = 'Merge upstream to the current branch';
+    protected $description = 'Merge upstream into the current branch';
 
     /**
      * Execute the console command.
@@ -38,7 +38,7 @@ class MergeUpstream extends Command
 
         $this->executeShell('git status');
 
-        if (! $this->confirmToProceed("Will merge $remote/$branch to the current branch", true)) {
+        if (! $this->confirmToProceed("Will merge $remote/$branch into the current branch", true)) {
             return;
         }
 
