@@ -44,7 +44,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "1.0-dev"
         },
         "laravel": {
             "providers": [
@@ -55,9 +55,6 @@
             "dont-discover": [
             ]
         }
-    },
-    "config": {
-        "sort-packages": true
     },
     "suggest": {
         "guzzlehttp/guzzle": "~6.3",
