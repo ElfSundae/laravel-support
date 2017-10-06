@@ -15,8 +15,8 @@
     "require": {
         "php": ">=7.0.0",
         "doctrine/dbal": "~2.6",
-        "elfsundae/laravel-agent": "^2.2",
-        "elfsundae/laravel-gravatar": "^1.0",
+        "elfsundae/laravel-agent": "~2.2",
+        "elfsundae/laravel-gravatar": "~1.0",
         "laravel/framework": "5.5.*",
         "myclabs/php-enum": "~1.5",
         "predis/predis": "~1.1"
@@ -68,8 +68,8 @@
         "elfsundae/laravel-helper": "~1.3",
         "elfsundae/laravel-agent": "~2.2",
         "elfsundae/laravel-api": "~1.4",
-        "elfsundae/laravel-datatables": "dev-master",
-        "elfsundae/laravel-captcha": "^2.2",
+        "elfsundae/laravel-datatables": "~2.1",
+        "elfsundae/laravel-captcha": "~2.2",
         "elfsundae/intervention-image": "~1.0",
         "elfsundae/xgpusher": "~1.1",
         "vinkla/hashids": "~3.3",
