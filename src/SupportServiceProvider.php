@@ -43,7 +43,6 @@ class SupportServiceProvider extends ServiceProvider
             $this->commands([
                 Console\Commands\AssetsVersion::class,
                 Console\Commands\GenerateIdeHelpers::class,
-                Console\Commands\GenerateInt2stringCharacters::class,
                 Console\Commands\MergeUpstream::class,
             ]);
         }

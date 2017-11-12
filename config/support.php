@@ -155,19 +155,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Int2string
-    |--------------------------------------------------------------------------
-    |
-    | Characters for `Helper::int2string()` and `Helper::string2int()`.
-    | You may generate it using
-    | `php artisan support:generate-int2string-characters` command.
-    |
-    */
-
-    'int2string' => env('INT2STRING_CHARACTERS', '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Optimus ID Transformation
     |--------------------------------------------------------------------------
     |
