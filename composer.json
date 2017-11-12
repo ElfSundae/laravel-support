@@ -30,8 +30,7 @@
             "ElfSundae\\Laravel\\Support\\": "src/"
         },
         "files": [
-            "src/helpers.php",
-            "src/Services/Optimus/helpers.php"
+            "src/helpers.php"
         ]
     },
     "autoload-dev": {
