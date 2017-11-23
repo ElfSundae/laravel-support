@@ -23,7 +23,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="@yield('favicon', asset_url('favicon.ico'))">
 @stack('css')
 @stack('head')
-  <!--[if lt IE 9]><script src="{{ asset_url('js/ie-compatible.js') }}"></script><![endif]-->
+  <!--[if lt IE 9]><script src="{{ asset_url('js/ie-html5shiv-respond.js') }}"></script><![endif]-->
 </head>
 @hasSection('body-class')
 <body class="@yield('body-class')">
