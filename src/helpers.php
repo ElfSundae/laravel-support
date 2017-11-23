@@ -57,7 +57,7 @@ if (! function_exists('asset_url')) {
     {
         return app('url')->assetFrom(
             config('support.url.'.$identifier),
-            revision($path)
+            asset_path($path)
         );
     }
 }
@@ -72,22 +72,5 @@ if (! function_exists('cdn_url')) {
     function cdn_url($path)
     {
         return asset_url($path, 'cdn');
-    }
-}
-
-if (! function_exists('revision')) {
-    /**
-     * Get the revisioned asset path.
-     *
-     * @param  string  $path
-     * @return string
-     */
-    function revision($path)
-    {
-        if ($rev = array_get(config('assets-version'), trim($path, '/'))) {
-            return $path.'?'.$rev;
-        }
-
-        return $path;
     }
 }
