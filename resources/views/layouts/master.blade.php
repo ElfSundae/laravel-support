@@ -20,7 +20,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="@yield('apple-mobile-web-app-title', config('app.name'))">
   <link rel="apple-touch-icon" href="@yield('apple-touch-icon', asset_url('assets/apple-touch-icon.png'))">
-  <link rel="shortcut icon" type="image/x-icon" href="@yield('favicon', asset_url('favicon.ico'))">
+  <link rel="icon" href="@yield('favicon', asset_url('favicon.ico'))" type="image/x-icon">
 @stack('css')
 @stack('head')
   <!--[if lt IE 9]><script src="{{ asset_url('js/ie-html5shiv-respond.js') }}"></script><![endif]-->
