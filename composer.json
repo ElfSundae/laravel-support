@@ -16,9 +16,7 @@
         "php": ">=7.0.0",
         "doctrine/dbal": "~2.6",
         "elfsundae/laravel-agent": "~2.2",
-        "elfsundae/laravel-gravatar": "~1.0",
         "laravel/framework": "5.5.*",
-        "myclabs/php-enum": "~1.5",
         "predis/predis": "~1.1"
     },
     "require-dev": {
@@ -57,26 +55,24 @@
         }
     },
     "suggest": {
-        "guzzlehttp/guzzle": "~6.3",
-        "intervention/image": "~2.4",
-        "iatstuti/laravel-nullable-fields": "~1.5",
         "elfsundae/httpclient": "~1.1",
-        "elfsundae/uuid": "~1.0",
-        "elfsundae/laravel-helper": "~1.3",
-        "elfsundae/laravel-agent": "~2.2",
-        "elfsundae/laravel-api": "~1.5",
-        "elfsundae/laravel-datatables": "~2.1",
-        "elfsundae/laravel-captcha": "~2.2",
         "elfsundae/intervention-image": "~1.1",
-        "elfsundae/xgpusher": "~1.1",
-        "spatie/laravel-backup": "~5.0",
+        "elfsundae/laravel-api": "~1.5",
+        "elfsundae/laravel-asset-version": "~1.0",
+        "elfsundae/laravel-captcha": "~2.2",
+        "elfsundae/laravel-datatables": "~2.1",
+        "elfsundae/laravel-gravatar": "~2.0",
+        "elfsundae/laravel-hashid": "~1.0",
+        "elfsundae/laravel-helper": "~1.3",
+        "guzzlehttp/guzzle": "~6.3",
+        "iatstuti/laravel-nullable-fields": "~1.5",
+        "intervention/image": "~2.4",
         "rap2hpoutre/laravel-log-viewer": "^0.10.4",
         "simplesoftwareio/simple-qrcode": "~1.5",
-        "laravel-notification-channels/bearychat": "~1.1"
+        "spatie/laravel-backup": "~5.0"
     },
     "suggest-dev": {
         "barryvdh/laravel-debugbar": "~3.0",
-        "barryvdh/laravel-ide-helper": "~2.4",
-        "caouecs/laravel-lang": "~3.0"
+        "barryvdh/laravel-ide-helper": "~2.4"
     }
 }
