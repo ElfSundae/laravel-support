@@ -34,8 +34,8 @@ class IdeHelperGenerateCommand extends Command
 
         if ($this->laravel->bound('command.ide-helper.generate')) {
             $this->call('ide-helper:generate');
-            $this->call('ide-helper:meta');
             $this->call('ide-helper:models', ['-N' => true]);
+            $this->call('ide-helper:meta');
         }
     }
 }
