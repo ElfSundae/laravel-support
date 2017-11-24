@@ -41,7 +41,7 @@ class AppServiceProvider extends ServiceProvider
         // if (is_app('admin') || $this->app->runningInConsole()) {
         //     array_push(
         //         $providers,
-        //         \ElfSundae\Laravel\Datatables\DatatablesServiceProvider::class,
+        //         \ElfSundae\Laravel\DataTables\DatatablesServiceProvider::class,
         //         \Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class
         //     );
         // }
