@@ -42,7 +42,6 @@ class SupportServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\Commands\GenerateIdeHelpers::class,
-                Console\Commands\MergeUpstream::class,
             ]);
         }
     }
