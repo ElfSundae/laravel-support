@@ -101,6 +101,7 @@ return [
             'datatables-buttons.namespace.model' => 'Models',
             'datatables-buttons.parameters' => [
                 'order' => [[0, 'desc']],
+                'fixedHeader' => true,
             ],
         ],
 
