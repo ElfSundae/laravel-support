@@ -22,10 +22,9 @@ class SupportServiceProvider extends ServiceProvider
                 __DIR__.'/../config/support.php' => config_path('support.php'),
             ], 'laravel-support-config');
 
-            $this->publishes(
-                [__DIR__.'/../resources/lang' => resource_path('lang')],
-                'laravel-support-lang'
-            );
+            $this->publishes([
+                __DIR__.'/../resources/lang' => resource_path('lang'),
+            ], 'laravel-support-lang');
 
             $this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
