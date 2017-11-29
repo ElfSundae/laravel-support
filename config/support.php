@@ -84,6 +84,18 @@ return [
                 'rating' => 'pg',
             ],
 
+            'services.mobsms' => [
+                'key' => env('MOBSMS_KEY'),
+            ],
+
+            'services.xgpush' => [
+                'key' => env('XGPUSH_KEY'),
+                'secret' => env('XGPUSH_SECRET'),
+                'environment' => env('XGPUSH_ENVIRONMENT', env('APP_ENV')),
+                'custom_key' => 'my',
+                'account_prefix' => 'user',
+            ],
+
             'captcha.default' => [
                 'length' => 4,
                 'width' => 80,
@@ -103,6 +115,9 @@ return [
                 'order' => [[0, 'desc']],
                 'fixedHeader' => true,
             ],
+
+            'debugbar.options.auth.show_name' => false,
+            'debugbar.options.route.label' => false,
 
             'ide-helper.include_fluent' => true,
             'ide-helper.include_helpers' => true,
