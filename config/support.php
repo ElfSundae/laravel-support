@@ -103,6 +103,26 @@ return [
                 'order' => [[0, 'desc']],
                 'fixedHeader' => true,
             ],
+
+            'ide-helper.include_fluent' => true,
+            'ide-helper.include_helpers' => true,
+            'ide-helper.helper_files' => [
+                base_path('vendor/laravel/framework/src/Illuminate/Support/helpers.php'),
+                base_path('vendor/laravel/framework/src/Illuminate/Foundation/helpers.php'),
+                base_path('vendor/barryvdh/laravel-debugbar/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-support/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-api/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-helper/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-gravatar/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-hashid/src/helpers.php'),
+                base_path('vendor/elfsundae/urlsafe-base64/src/helpers.php'),
+                base_path('vendor/elfsundae/laravel-asset-version/src/helpers.php'),
+            ],
+            'ide-helper.custom_db_types' => [
+                'mysql' => [
+                    'json' => 'json_array',
+                ],
+            ],
         ],
 
         'admin' => [
