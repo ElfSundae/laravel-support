@@ -119,8 +119,8 @@ return [
     */
 
     'attributes'           => [
-        'captcha'               => '验证码',
         'avatar'                => '头像',
+        'captcha'               => '验证码',
 
         'name'                  => '名称',
         'username'              => '用户名',
