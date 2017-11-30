@@ -15,10 +15,8 @@ class Helper
      */
     public static function fileExtensionForMimeType($mimeType, $prefix = '')
     {
-        $extension = ExtensionGuesser::getInstance()->guess($mimeType);
-
-        if (! is_null($extension)) {
-            if ('jpeg' == $extension) {
+        if ($extension = ExtensionGuesser::getInstance()->guess($mimeType)) {
+            if ($extension === 'jpeg') {
                 $extension = 'jpg';
             }
 
