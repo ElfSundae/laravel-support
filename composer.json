@@ -62,7 +62,7 @@
         "elfsundae/httpclient": "~1.1",
         "elfsundae/intervention-image": "~1.1",
         "elfsundae/laravel-agent": "~2.2",
-        "elfsundae/laravel-api": "~1.5",
+        "elfsundae/laravel-api": "~1.6",
         "elfsundae/laravel-asset-version": "~1.0",
         "elfsundae/laravel-captcha": "~2.2",
         "elfsundae/laravel-datatables": "~2.1",
