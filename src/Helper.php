@@ -247,4 +247,46 @@ class Helper
 
         return $result;
     }
+
+    /**
+     * Fake current agent client to an app client.
+     *
+     * @param  array  $client
+     * @return void
+     */
+    public static function fakeAppClient(array $client)
+    {
+        app()->resolving('agent.client', function ($agent, $app) use ($client) {
+            if ($agent->is('AppClient')) {
+                return;
+            }
+
+            $client = urlsafe_base64_encode(json_encode($client));
+
+            $agent->setUserAgent(
+                $app['request']->header('User-Agent')." client($client)"
+            );
+        });
+    }
+
+    /**
+     * Set faked api token for the current request.
+     *
+     * @param  string|null  $appKey
+     * @return void
+     */
+    public static function fakeApiToken($appKey = null)
+    {
+        app()->rebinding('request', function ($app, $request) use ($appKey) {
+            if ($request->hasHeader('X-API-TOKEN') || $request->has('_token')) {
+                return;
+            }
+
+            $appKey = $appKey ?: app('api.client')->defaultAppKey();
+
+            foreach (app('api.token')->generateDataForKey($appKey) as $key => $value) {
+                $request->headers->set('X-API-'.strtoupper($key), $value);
+            }
+        });
+    }
 }
