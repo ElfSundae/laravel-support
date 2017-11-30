@@ -167,30 +167,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fake App Client
-    |--------------------------------------------------------------------------
-    |
-    | You may configure a fake app client for local testing.
-    |
-    | See `Agent\Client::getAppClientAttributes()` and
-    | `Support\Providers\AppServiceProvider::fakeAppClient()`.
-    |
-    */
-
-    'fake_app_client' => [
-        'os' => 'iOS',
-        'osV' => '9.3.3',
-        'pf' => 'iPhone7,1',
-        'loc' => 'zh_CN',
-        'app' => 'FakeAppClient',
-        'appV' => '1.0.0',
-        'appC' => 'App Store',
-        'net' => 'WiFi',
-        'udid' => '000000000000000000000000000000',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | Google Analytics
     |--------------------------------------------------------------------------
     |
