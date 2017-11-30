@@ -118,7 +118,7 @@ class Helper
             ];
         }
 
-        return isset($iDeviceModels[$platform]) ? $iDeviceModels[$platform] : $platform;
+        return $iDeviceModels[$platform] ?? $platform;
     }
 
     /**
