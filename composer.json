@@ -52,6 +52,10 @@
             },
             "dont-discover": [
             ]
+        },
+        "suggest-dev": {
+            "barryvdh/laravel-debugbar": "~3.0",
+            "barryvdh/laravel-ide-helper": "~2.4"
         }
     },
     "suggest": {
@@ -71,9 +75,5 @@
         "rap2hpoutre/laravel-log-viewer": "~0.11",
         "simplesoftwareio/simple-qrcode": "~1.5",
         "spatie/laravel-backup": "~5.0"
-    },
-    "suggest-dev": {
-        "barryvdh/laravel-debugbar": "~3.0",
-        "barryvdh/laravel-ide-helper": "~2.4"
     }
 }
