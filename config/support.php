@@ -84,6 +84,12 @@ return [
                 'rating' => 'pg',
             ],
 
+            'services.google_analytics' => [
+                'id' => env('GOOGLE_ANALYTICS_ID'),
+                // 'auto', 'none', 'example.com'
+                'cookie_domain' => env('GOOGLE_ANALYTICS_COOKIE_DOMAIN', 'auto'),
+            ],
+
             'services.mobsms' => [
                 'key' => env('MOBSMS_KEY'),
             ],
@@ -164,20 +170,5 @@ return [
     */
 
     'carbon_locale' => 'zh',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Google Analytics
-    |--------------------------------------------------------------------------
-    |
-    | id : 'UA-XXXX-Y'
-    | cookie_domain : 'auto' // 'none' // 'example.com'
-    |
-    */
-
-    'google_analytics' => [
-        'id' => env('GOOGLE_ANALYTICS_ID'),
-        'cookie_domain' => env('GOOGLE_ANALYTICS_COOKIE_DOMAIN', 'auto'),
-    ],
 
 ];
