@@ -58,26 +58,12 @@ class SupportServiceProvider extends ServiceProvider
     protected function setupConfiguration()
     {
         if (! $this->app->configurationIsCached()) {
-            $this->configureDefaults();
+            if ($defaults = $this->app['config']['support.config.default']) {
+                $this->app['config']->set($defaults);
+            }
         }
 
         $this->configureForCurrentRequest();
-    }
-
-    /**
-     * Configure application defaults.
-     *
-     * @return void
-     */
-    protected function configureDefaults()
-    {
-        $config = $this->app['config'];
-
-        $config['support.domain'] = array_map(function ($value) {
-            return parse_url($value, PHP_URL_HOST);
-        }, $config->get('support.url', []));
-
-        $config->set($config->get('support.config.default', []));
     }
 
     /**
@@ -87,48 +73,12 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function configureForCurrentRequest()
     {
-        if (
-            ($identifier = $this->getCurrentAppIdentifier()) &&
-            $config = $this->app['config']['support.config.'.$identifier]
-        ) {
-            $this->app['config']->set($config);
+        if (app_id() && $appConfig = $this->app['config']->get('support.config.'.app_id())) {
+            $this->app['config']->set($appConfig);
         }
 
         if ($carbonLocale = $this->app['config']['support.carbon_locale']) {
             Carbon::setLocale($carbonLocale);
         }
-    }
-
-    /**
-     * Get the current sub application identifier.
-     *
-     * @return string|null
-     */
-    protected function getCurrentAppIdentifier()
-    {
-        $requestUrl = $this->removeUrlScheme($this->app['request']->url());
-
-        $apps = array_map(
-            [$this, 'removeUrlScheme'],
-            $this->app['config']->get('support.url', [])
-        );
-        arsort($apps);
-
-        foreach ($apps as $id => $url) {
-            if (Str::startsWith($requestUrl, $url)) {
-                return $id;
-            }
-        }
-    }
-
-    /**
-     * Remove the scheme for the given URL.
-     *
-     * @param  string  $url
-     * @return string
-     */
-    protected function removeUrlScheme($url)
-    {
-        return preg_replace('#^https?://#', '', $url);
     }
 }
