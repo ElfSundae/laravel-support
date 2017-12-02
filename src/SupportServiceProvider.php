@@ -3,7 +3,6 @@
 namespace ElfSundae\Laravel\Support;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
