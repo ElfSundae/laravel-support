@@ -13,6 +13,8 @@ return [
 
     'config' => [
         'default' => [
+            'apps.url.app' => env('APP_URL_APP', env('APP_URL')),
+
             'app.timezone' => 'Asia/Shanghai',
             'app.locale' => 'zh-CN',
             'app.faker_locale' => 'zh_CN',
