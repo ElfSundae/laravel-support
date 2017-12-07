@@ -136,6 +136,8 @@ class Helper
             if (is_null($mailHomepages)) {
                 $mailHomepages = [
                     'gmail.com' => 'https://mail.google.com',
+                    'yahoo.com' => 'https://mail.yahoo.com',
+                    'outlook.com' => 'https://outlook.live.com',
                     'qq.com' => 'https://mail.qq.com',
                     'vip.qq.com' => 'https://mail.qq.com',
                     '163.com' => 'http://mail.163.com',
