@@ -72,9 +72,9 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function configureForCurrentRequest()
     {
-        if (app_id() && $appConfig = $this->app['config']->get('support.config.'.app_id())) {
-            $this->app['config']->set($appConfig);
-        }
+        // if (app_id() && $appConfig = $this->app['config']->get('support.config.'.app_id())) {
+        //     $this->app['config']->set($appConfig);
+        // }
 
         if ($carbonLocale = $this->app['config']['support.carbon_locale']) {
             Carbon::setLocale($carbonLocale);
