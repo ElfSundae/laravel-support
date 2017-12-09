@@ -49,10 +49,6 @@
             },
             "dont-discover": [
             ]
-        },
-        "suggest-dev": {
-            "barryvdh/laravel-debugbar": "~3.0",
-            "barryvdh/laravel-ide-helper": "~2.4"
         }
     },
     "suggest": {
