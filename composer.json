@@ -14,10 +14,11 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "doctrine/dbal": "~2.6",
-        "elfsundae/laravel-agent": "~2.2",
         "laravel/framework": "5.5.*",
-        "predis/predis": "~1.1"
+        "predis/predis": "~1.1",
+        "doctrine/dbal": "~2.6",
+        "elfsundae/laravel-apps": "dev-master",
+        "elfsundae/laravel-agent": "~2.2"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
