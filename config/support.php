@@ -16,6 +16,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Carbon Datetime Translator Locale
+    |--------------------------------------------------------------------------
+    |
+    | All avaliable locales are located in
+    | "/vendor/nesbot/carbon/src/Carbon/Lang" directory.
+    |
+    */
+
+    'carbon_locale' => 'zh',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Configuration
     |--------------------------------------------------------------------------
     |
@@ -154,17 +166,5 @@ return [
             'session.domain' => env('SESSION_DOMAIN_API', null),
         ],
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Carbon Datetime Translator Locale
-    |--------------------------------------------------------------------------
-    |
-    | All avaliable locales are located in
-    | "/vendor/nesbot/carbon/src/Carbon/Lang" directory.
-    |
-    */
-
-    'carbon_locale' => 'zh',
 
 ];
