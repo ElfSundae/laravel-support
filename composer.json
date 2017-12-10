@@ -58,7 +58,7 @@
         "guzzlehttp/guzzle": "Guzzle, an extensible PHP HTTP client (~6.3)",
         "elfsundae/httpclient": "A wrapper of Guzzle HTTP client (~1.1)",
         "intervention/image": "PHP image handling and manipulation (~2.4)",
-        "elfsundae/intervention-image": "~1.1",
+        "elfsundae/intervention-image-filters": "Intervention Image Filters (~2.0)",
         "elfsundae/laravel-agent": "~2.2",
         "elfsundae/laravel-api": "~1.6",
         "elfsundae/laravel-asset-version": "Laravel static assets versioning via query string: 'app.js' → 'app.js?d41d8cd98f'",
