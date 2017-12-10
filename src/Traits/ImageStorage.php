@@ -3,8 +3,8 @@
 namespace ElfSundae\Laravel\Support\Traits;
 
 use Exception;
+use ElfSundae\Image\Filters\Resize;
 use ElfSundae\Laravel\Support\Helper;
-use ElfSundae\Laravel\Support\Image\Filters\Resize;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait ImageStorage
