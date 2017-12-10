@@ -15,7 +15,6 @@
     "require": {
         "php": ">=7.0.0",
         "laravel/framework": "5.5.*",
-        "predis/predis": "~1.1",
         "doctrine/dbal": "~2.6",
         "elfsundae/laravel-apps": "dev-master",
         "elfsundae/laravel-agent": "~2.2"
