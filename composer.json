@@ -35,7 +35,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "lang": "mkdir -p resources/lang && cp -af vendor/caouecs/laravel-lang/src/zh-CN resources/lang"
     },
     "extra": {
         "branch-alias": {
