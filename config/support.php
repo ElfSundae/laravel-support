@@ -48,10 +48,7 @@ return [
                 'driver' => 'session',
                 'provider' => 'admin_users',
             ],
-            'auth.providers.users' => [
-                'driver' => 'eloquent',
-                'model' => App\Models\User::class,
-            ],
+            'auth.providers.users.model' => App\Models\User::class,
             'auth.providers.admin_users' => [
                 'driver' => 'eloquent',
                 'model' => App\Models\AdminUser::class,
@@ -80,7 +77,7 @@ return [
                 'database' => 2,
             ],
 
-            'filesystems.disks.public.url' => env('APP_URL_ASSET', env('APP_URL')).'/storage',
+            'filesystems.disks.public.url' => env('APP_URL_ASSETS', env('APP_URL')).'/storage',
 
             'session.connection' => 'sessions',
 
