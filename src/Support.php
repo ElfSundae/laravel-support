@@ -4,9 +4,9 @@ namespace ElfSundae\Laravel\Support;
 
 use SplFileInfo;
 use Illuminate\Support\Str;
-use Intervention\Image\File as ImageFile;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Traits\Macroable;
+use Intervention\Image\File as ImageFile;
 use Symfony\Component\HttpFoundation\File\File as SymfonyFile;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
@@ -172,43 +172,45 @@ class Support
     }
 
     /**
-     * Get the mail homepage.
+     * Get the home or login URL for an email address.
      *
-     * @param  string  $address
+     * @param  string  $email
      * @return string|null
      */
-    public function mailHomepage($address)
+    public function emailHome($email)
     {
-        static $mailHomepages = null;
-
-        if (filter_var($address, FILTER_VALIDATE_EMAIL)) {
-            if (is_null($mailHomepages)) {
-                $mailHomepages = [
-                    'gmail.com' => 'https://mail.google.com',
-                    'yahoo.com' => 'https://mail.yahoo.com',
-                    'outlook.com' => 'https://outlook.live.com',
-                    'qq.com' => 'https://mail.qq.com',
-                    'vip.qq.com' => 'https://mail.qq.com',
-                    '163.com' => 'http://mail.163.com',
-                    '126.com' => 'http://www.126.com',
-                    'yeah.net' => 'http://www.yeah.net',
-                    'sina.com' => 'https://mail.sina.com.cn',
-                    'sina.cn' => 'https://mail.sina.com.cn',
-                    'vip.sina.com' => 'https://mail.sina.com.cn',
-                    'sohu.com' => 'https://mail.sohu.com',
-                    'vip.sohu.com' => 'https://vip.sohu.com',
-                    'aliyun.com' => 'https://mail.aliyun.com',
-                    'tom.com' => 'http://mail.tom.com',
-                    '139.com' => 'http://mail.10086.cn',
-                    'wo.cn' => 'https://mail.wo.cn',
-                    '189.cn' => 'https://mail.189.cn',
-                ];
-            }
-
-            $domain = strtolower(Str::after($address, '@'));
-
-            return $mailHomepages[$domain] ?? 'http://'.$domain;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            return;
         }
+
+        static $emailHomeUrls = null;
+
+        if (is_null($emailHomeUrls)) {
+            $emailHomeUrls = [
+                'gmail.com' => 'https://mail.google.com',
+                'yahoo.com' => 'https://mail.yahoo.com',
+                'outlook.com' => 'https://outlook.live.com',
+                'qq.com' => 'https://mail.qq.com',
+                'vip.qq.com' => 'https://mail.qq.com',
+                '163.com' => 'http://mail.163.com',
+                '126.com' => 'http://www.126.com',
+                'yeah.net' => 'http://www.yeah.net',
+                'sina.com' => 'https://mail.sina.com.cn',
+                'sina.cn' => 'https://mail.sina.com.cn',
+                'vip.sina.com' => 'https://mail.sina.com.cn',
+                'sohu.com' => 'https://mail.sohu.com',
+                'vip.sohu.com' => 'https://vip.sohu.com',
+                'aliyun.com' => 'https://mail.aliyun.com',
+                'tom.com' => 'http://mail.tom.com',
+                '139.com' => 'http://mail.10086.cn',
+                'wo.cn' => 'https://mail.wo.cn',
+                '189.cn' => 'https://mail.189.cn',
+            ];
+        }
+
+        $domain = strtolower(Str::after($email, '@'));
+
+        return $emailHomeUrls[$domain] ?? 'http://'.$domain;
     }
 
     /**
