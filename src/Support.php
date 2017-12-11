@@ -314,10 +314,9 @@ class Support
                 return;
             }
 
-            $client = urlsafe_base64_encode(json_encode($client));
-
             $agent->setUserAgent(
-                $app['request']->header('User-Agent')." client($client)"
+                $app['request']->header('User-Agent').
+                ' client('.urlsafe_base64_encode(json_encode($client)).')'
             );
         });
     }
@@ -335,9 +334,11 @@ class Support
                 return;
             }
 
-            $appKey = $appKey ?: $app['api.client']->defaultAppKey();
+            $data = $app['api.token']->generateDataForKey(
+                $appKey ?: $app['api.client']->defaultAppKey()
+            );
 
-            foreach ($app['api.token']->generateDataForKey($appKey) as $key => $value) {
+            foreach ($data as $key => $value) {
                 $request->headers->set('X-API-'.strtoupper($key), $value);
             }
         });
