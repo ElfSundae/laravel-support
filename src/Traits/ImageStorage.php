@@ -4,7 +4,7 @@ namespace ElfSundae\Laravel\Support\Traits;
 
 use Exception;
 use ElfSundae\Image\Filters\Resize;
-use ElfSundae\Laravel\Support\Helper;
+use ElfSundae\Laravel\Support\Facades\Support;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait ImageStorage
@@ -110,6 +110,6 @@ trait ImageStorage
      */
     protected function getImageFilename($image, $identifier = null)
     {
-        return md5($image).Helper::fileExtensionForMimeType($image->mime(), '.');
+        return md5($image).Support::extension($image, '.');
     }
 }

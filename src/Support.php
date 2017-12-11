@@ -2,9 +2,12 @@
 
 namespace ElfSundae\Laravel\Support;
 
+use SplFileInfo;
 use Illuminate\Support\Str;
+use Intervention\Image\File as ImageFile;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Traits\Macroable;
+use Symfony\Component\HttpFoundation\File\File as SymfonyFile;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
 class Support
@@ -29,21 +32,46 @@ class Support
     }
 
     /**
-     * Get file extension for the given MIME type.
+     * Get the file extension.
      *
-     * @param  string  $mime
+     * @param  mixed  $file
      * @param  string  $prefix
      * @return string|null
      */
-    public function fileExtensionForMimeType($mime, $prefix = '')
+    public function extension($file, $prefix = '')
     {
-        if ($extension = ExtensionGuesser::getInstance()->guess($mime)) {
-            if ($extension === 'jpeg') {
-                $extension = 'jpg';
+        if (is_string($file)) {
+            if (substr_count($file, '/') === 1) {
+                $ext = $this->extensionForMime($file);
+            } else {
+                $ext = pathinfo($file, PATHINFO_EXTENSION);
+            }
+        } elseif ($file instanceof SymfonyFile) {
+            $ext = $file->guessExtension();
+        } elseif ($file instanceof SplFileInfo) {
+            $ext = $file->getExtension();
+        } elseif ($file instanceof ImageFile) {
+            $ext = $file->extension ?: $this->extensionForMime($file->mime);
+        }
+
+        if (! empty($ext)) {
+            if ($ext == 'jpeg') {
+                $ext = 'jpg';
             }
 
-            return $prefix.$extension;
+            return $prefix.$ext;
         }
+    }
+
+    /**
+     * Get the file extension for the given MIME type.
+     *
+     * @param  string  $mimeType
+     * @return string|null
+     */
+    public function extensionForMime($mimeType)
+    {
+        return ExtensionGuesser::getInstance()->guess($mimeType);
     }
 
     /**
