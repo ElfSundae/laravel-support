@@ -224,19 +224,19 @@ class Support
     {
         $text = (string) $text;
         if (is_null($key)) {
-            $key = app('encrypter')->getKey();
+            $key = $this->app['encrypter']->getKey();
         }
 
         // 生成随机字符串
         $random = str_random(strlen($text));
 
         // 按字符拼接：随机字符串 + 随机字符串异或原文
-        $tmp = static::sampleEncryption($text, $random, function ($a, $b) {
+        $tmp = $this->sampleEncryption($text, $random, function ($a, $b) {
             return $b.($a ^ $b);
         });
 
         // 异或 $tmp 和 $key
-        $result = static::sampleEncryption($tmp, $key);
+        $result = $this->sampleEncryption($tmp, $key);
 
         return urlsafe_base64_encode($result);
     }
@@ -251,10 +251,10 @@ class Support
     public function sampleDecrypt($text, $key = null)
     {
         if (is_null($key)) {
-            $key = app('encrypter')->getKey();
+            $key = $this->app['encrypter']->getKey();
         }
 
-        $tmp = static::sampleEncryption(urlsafe_base64_decode($text), $key);
+        $tmp = $this->sampleEncryption(urlsafe_base64_decode($text), $key);
         $tmpLength = strlen($tmp);
         $result = '';
         for ($i = 0; $i < $tmpLength, ($i + 1) < $tmpLength; $i += 2) {
@@ -272,7 +272,7 @@ class Support
      * @param  \Closure|null  $callback `($a, $b, $index)`
      * @return string
      */
-    protected static function sampleEncryption($text, $key, $callback = null)
+    protected function sampleEncryption($text, $key, $callback = null)
     {
         // 对 $text 和 $key 的每个字符进行运算。
         // $callback 为 null 时默认进行异或运算。
@@ -309,7 +309,7 @@ class Support
      */
     public function fakeAppClient(array $client)
     {
-        app()->resolving('agent.client', function ($agent, $app) use ($client) {
+        $this->app->resolving('agent.client', function ($agent, $app) use ($client) {
             if ($agent->is('AppClient')) {
                 return;
             }
@@ -330,14 +330,14 @@ class Support
      */
     public function fakeApiToken($appKey = null)
     {
-        app()->rebinding('request', function ($app, $request) use ($appKey) {
+        $this->app->rebinding('request', function ($app, $request) use ($appKey) {
             if ($request->hasHeader('X-API-TOKEN') || $request->has('_token')) {
                 return;
             }
 
-            $appKey = $appKey ?: app('api.client')->defaultAppKey();
+            $appKey = $appKey ?: $app['api.client']->defaultAppKey();
 
-            foreach (app('api.token')->generateDataForKey($appKey) as $key => $value) {
+            foreach ($app['api.token']->generateDataForKey($appKey) as $key => $value) {
                 $request->headers->set('X-API-'.strtoupper($key), $value);
             }
         });
