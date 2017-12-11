@@ -4,10 +4,13 @@ namespace ElfSundae\Laravel\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Traits\Macroable;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
 class Support
 {
+    use Macroable;
+
     /**
      * The application instance.
      *
