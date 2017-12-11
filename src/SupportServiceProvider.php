@@ -7,32 +7,36 @@ use Illuminate\Support\ServiceProvider;
 class SupportServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap the service provider.
      *
      * @return void
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'support');
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/support'),
-            ], 'laravel-support-views');
-        }
+        $this->registerCommands();
     }
 
     /**
-     * Register the application service.
+     * Register the commands for the application.
      *
      * @return void
      */
-    public function register()
+    protected function registerCommands()
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Console\IdeHelperGenerateCommand::class,
             ]);
         }
+    }
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
     }
 }
