@@ -20,7 +20,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | All avaliable locales are located in
-    | "/vendor/nesbot/carbon/src/Carbon/Lang" directory.
+    | "vendor/nesbot/carbon/src/Carbon/Lang" directory.
     |
     */
 
