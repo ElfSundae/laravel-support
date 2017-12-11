@@ -12,7 +12,7 @@ class IdeHelperGenerateCommand extends Command
      * @var string
      */
     protected $signature = 'support:ide-helper-generate
-        {--s|standalone : Do not call "clear-compiled" command}';
+        {--p|pure : Do not call "clear-compiled" command}';
 
     /**
      * The console command description.
@@ -28,13 +28,13 @@ class IdeHelperGenerateCommand extends Command
      */
     public function handle()
     {
-        if (! $this->option('standalone')) {
+        if (! $this->option('pure')) {
             $this->call('clear-compiled');
         }
 
         if ($this->laravel->bound('command.ide-helper.generate')) {
             $this->call('ide-helper:generate');
-            $this->call('ide-helper:models', ['-N' => true]);
+            $this->call('ide-helper:models', ['--nowrite' => true]);
             $this->call('ide-helper:meta');
         }
     }
