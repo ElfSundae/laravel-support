@@ -2,7 +2,7 @@
 
 namespace ElfSundae\Laravel\Support\Traits\Eloquent;
 
-use ElfSundae\Laravel\Support\Helper;
+use ElfSundae\Laravel\Support\Facades\Support;
 
 trait DeviceModelAttribute
 {
@@ -15,6 +15,6 @@ trait DeviceModelAttribute
     {
         $platform = property_exists($this, 'deviceModelKey') ? $this->deviceModelKey : 'platform';
 
-        return Helper::iDeviceModel($this->{$platform});
+        return Support::iDeviceModel($this->{$platform});
     }
 }
