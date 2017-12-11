@@ -37,6 +37,20 @@ class SupportServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerSupport();
+    }
+
+    /**
+     * Register support singleton.
+     *
+     * @return void
+     */
+    protected function registerSupport()
+    {
+        $this->app->singleton('support', function ($app) {
+            return new Support($app);
+        });
+
+        $this->app->alias('support', Support::class);
     }
 }

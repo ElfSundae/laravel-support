@@ -3,20 +3,38 @@
 namespace ElfSundae\Laravel\Support;
 
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Application;
 use Symfony\Component\HttpFoundation\File\MimeType\ExtensionGuesser;
 
-class Helper
+class Support
 {
     /**
-     * Get file extension for MIME type.
+     * The application instance.
      *
-     * @param  string  $mimeType
+     * @var \Illuminate\Foundation\Application
+     */
+    protected $app;
+
+    /**
+     * Create a new Support instance.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
+
+    /**
+     * Get file extension for the given MIME type.
+     *
+     * @param  string  $mime
      * @param  string  $prefix
      * @return string|null
      */
-    public static function fileExtensionForMimeType($mimeType, $prefix = '')
+    public function fileExtensionForMimeType($mime, $prefix = '')
     {
-        if ($extension = ExtensionGuesser::getInstance()->guess($mimeType)) {
+        if ($extension = ExtensionGuesser::getInstance()->guess($mime)) {
             if ($extension === 'jpeg') {
                 $extension = 'jpg';
             }
@@ -34,7 +52,7 @@ class Helper
      * @param  string  $platform
      * @return string
      */
-    public static function iDeviceModel($platform)
+    public function iDeviceModel($platform)
     {
         static $iDeviceModels = null;
 
@@ -128,7 +146,7 @@ class Helper
      * @param  string  $address
      * @return string|null
      */
-    public static function mailHomepage($address)
+    public function mailHomepage($address)
     {
         static $mailHomepages = null;
 
@@ -169,7 +187,7 @@ class Helper
      * @param  string|null  $key
      * @return string
      */
-    public static function sampleEncrypt($text, $key = null)
+    public function sampleEncrypt($text, $key = null)
     {
         $text = (string) $text;
         if (is_null($key)) {
@@ -197,7 +215,7 @@ class Helper
      * @param  string|null  $key
      * @return string
      */
-    public static function sampleDecrypt($text, $key = null)
+    public function sampleDecrypt($text, $key = null)
     {
         if (is_null($key)) {
             $key = app('encrypter')->getKey();
@@ -256,7 +274,7 @@ class Helper
      * @param  array  $client
      * @return void
      */
-    public static function fakeAppClient(array $client)
+    public function fakeAppClient(array $client)
     {
         app()->resolving('agent.client', function ($agent, $app) use ($client) {
             if ($agent->is('AppClient')) {
@@ -277,7 +295,7 @@ class Helper
      * @param  string|null  $appKey
      * @return void
      */
-    public static function fakeApiToken($appKey = null)
+    public function fakeApiToken($appKey = null)
     {
         app()->rebinding('request', function ($app, $request) use ($appKey) {
             if ($request->hasHeader('X-API-TOKEN') || $request->has('_token')) {

@@ -46,6 +46,7 @@
                 "ElfSundae\\Laravel\\Support\\SupportServiceProvider"
             ],
             "aliases": {
+                "Support": "ElfSundae\\Laravel\\Support\\Facades\\Support"
             },
             "dont-discover": [
             ]
