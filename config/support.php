@@ -4,18 +4,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Assets Application Identifier
-    |--------------------------------------------------------------------------
-    |
-    | This application identifier determines the root URL for generating URL
-    | to application assets.
-    |
-    */
-
-    'assets_app' => env('ASSETS_APP', 'assets'),
-
-    /*
-    |--------------------------------------------------------------------------
     | Carbon Datetime Translator Locale
     |--------------------------------------------------------------------------
     |
