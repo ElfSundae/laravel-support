@@ -55,6 +55,7 @@
     "suggest": {
         "barryvdh/laravel-debugbar": "~3.0 --dev",
         "barryvdh/laravel-ide-helper": "~2.4 --dev",
+        "nunomaduro/collision": "~1.1 --dev",
         "guzzlehttp/guzzle": "Guzzle, an extensible PHP HTTP client (~6.3)",
         "elfsundae/httpclient": "A wrapper of Guzzle HTTP client (~1.1)",
         "intervention/image": "PHP image handling and manipulation (~2.4)",
