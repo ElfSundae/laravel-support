@@ -64,7 +64,6 @@
         "elfsundae/laravel-datatables": "extended yajra/laravel-datatables (~2.3)",
         "elfsundae/laravel-gravatar": "The easiest way to generate Gravatar avatar URL (~2.0)",
         "elfsundae/laravel-hashid": "Obfuscate your data by generating reversible, non-sequential, URL-safe identifiers.",
-        "elfsundae/laravel-helper": "~1.3",
         "iatstuti/laravel-nullable-fields": "Handles saving empty fields as null for Eloquent models (~1.5)",
         "rap2hpoutre/laravel-log-viewer": "Laravel 5 log viewer (~0.11)",
         "simplesoftwareio/simple-qrcode": "An easy-to-use PHP QrCode generator (~2.0)",
