@@ -1,8 +1,8 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits\Eloquent;
+namespace ElfSundae\Support\Traits\Eloquent;
 
-use ElfSundae\Laravel\Support\Facades\Support;
+use ElfSundae\Support\Facades\Support;
 
 trait DeviceModelAttribute
 {

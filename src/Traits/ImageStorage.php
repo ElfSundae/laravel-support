@@ -1,10 +1,10 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits;
+namespace ElfSundae\Support\Traits;
 
 use Exception;
 use ElfSundae\Image\Filters\Resize;
-use ElfSundae\Laravel\Support\Facades\Support;
+use ElfSundae\Support\Facades\Support;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait ImageStorage

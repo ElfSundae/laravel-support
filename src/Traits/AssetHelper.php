@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits;
+namespace ElfSundae\Support\Traits;
 
 use Illuminate\Support\Facades\Storage;
 

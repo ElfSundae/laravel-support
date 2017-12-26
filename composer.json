@@ -16,7 +16,7 @@
         "php": ">=7.1.0",
         "laravel/framework": "5.5.*",
         "doctrine/dbal": "~2.6",
-        "elfsundae/laravel-apps": "dev-master",
+        "elfsundae/laravel-apps": "~0.1",
         "elfsundae/laravel-agent": "~2.2"
     },
     "require-dev": {
@@ -26,27 +26,24 @@
     },
     "autoload": {
         "psr-4": {
-            "ElfSundae\\Laravel\\Support\\": "src/"
+            "ElfSundae\\Support\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ElfSundae\\Laravel\\Support\\Test\\": "tests/"
+            "ElfSundae\\Support\\Test\\": "tests/"
         }
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "0.1-dev"
-        },
         "laravel": {
             "providers": [
-                "ElfSundae\\Laravel\\Support\\SupportServiceProvider"
+                "ElfSundae\\Support\\SupportServiceProvider"
             ],
             "aliases": {
-                "Support": "ElfSundae\\Laravel\\Support\\Facades\\Support"
+                "Support": "ElfSundae\\Support\\Facades\\Support"
             },
             "dont-discover": [
             ]

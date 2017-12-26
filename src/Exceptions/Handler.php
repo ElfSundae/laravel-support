@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Exceptions;
+namespace ElfSundae\Support\Exceptions;
 
 use Exception;
 use Psr\Log\LoggerInterface;

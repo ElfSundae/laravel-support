@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits\Eloquent;
+namespace ElfSundae\Support\Traits\Eloquent;
 
 trait FreshCreatedAt
 {

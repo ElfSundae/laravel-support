@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Test;
+namespace ElfSundae\Support\Test;
 
 use Orchestra\Testbench\TestCase as BaseTestCase;
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Facades;
+namespace ElfSundae\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \ElfSundae\Laravel\Support\Support
+ * @see \ElfSundae\Support\Support
  */
 class Support extends Facade
 {

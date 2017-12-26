@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Traits\Eloquent;
+namespace ElfSundae\Support\Traits\Eloquent;
 
 /**
  * Add ability for Eloquent to hide or visible attributes via static methods.

@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Test;
+namespace ElfSundae\Support\Test;
 
 class ExampleTest extends TestCase
 {

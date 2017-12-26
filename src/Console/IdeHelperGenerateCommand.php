@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Console;
+namespace ElfSundae\Support\Console;
 
 use Illuminate\Console\Command;
 

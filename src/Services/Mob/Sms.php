@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Services\Mob;
+namespace ElfSundae\Support\Services\Mob;
 
 use ElfSundae\HttpClient;
 use ElfSundae\Laravel\Api\Exceptions\InvalidInputException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support\Http\Middleware;
+namespace ElfSundae\Support\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
