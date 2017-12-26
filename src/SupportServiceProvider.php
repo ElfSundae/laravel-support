@@ -1,6 +1,6 @@
 <?php
 
-namespace ElfSundae\Laravel\Support;
+namespace ElfSundae\Support;
 
 use Illuminate\Support\ServiceProvider;
 
