@@ -3,13 +3,8 @@ language: php
 php:
   - 7.1
 
-env:
-  matrix:
-    - COMPOSER_FLAGS="--prefer-lowest"
-    - COMPOSER_FLAGS=""
-
 before_script:
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist --no-suggest
+  - travis_retry composer update --no-interaction --prefer-dist --no-suggest
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
