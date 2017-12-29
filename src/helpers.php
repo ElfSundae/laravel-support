@@ -1,6 +1,5 @@
 <?php
 
-use Traversable;
 use Illuminate\Contracts\Support\Jsonable;
 
 if (! function_exists('in_arrayi')) {
