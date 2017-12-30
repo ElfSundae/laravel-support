@@ -2,6 +2,7 @@
 
 namespace ElfSundae\Support;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
@@ -13,6 +14,8 @@ class SupportServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Carbon::setLocale('zh');
+
         $this->registerCommands();
     }
 
