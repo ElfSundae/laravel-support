@@ -21,7 +21,9 @@
         "elfsundae/laravel-api": "~1.7",
         "elfsundae/laravel-gravatar": "~2.1",
         "guzzlehttp/guzzle": "~6.3",
-        "elfsundae/httpclient": "~1.1"
+        "elfsundae/httpclient": "~1.1",
+        "elfsundae/laravel-datatables": "~2.5",
+        "rap2hpoutre/laravel-log-viewer": "~0.11"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
@@ -53,6 +55,7 @@
                 "Support": "ElfSundae\\Support\\Facades\\Support"
             },
             "dont-discover": [
+                "rap2hpoutre/laravel-log-viewer"
             ]
         }
     },
@@ -63,11 +66,8 @@
         "elfsundae/intervention-image-filters": "Intervention Image Filters (~2.0)",
         "elfsundae/laravel-asset-version": "Laravel static assets versioning via query string: 'app.js' → 'app.js?d41d8cd98f'",
         "elfsundae/laravel-captcha": "A patched package to mews/captcha (~2.2)",
-        "elfsundae/laravel-datatables": "extended yajra/laravel-datatables (~2.3)",
-        "elfsundae/laravel-gravatar": "The easiest way to generate Gravatar avatar URL (~2.0)",
         "elfsundae/laravel-hashid": "Obfuscate your data by generating reversible, non-sequential, URL-safe identifiers.",
         "iatstuti/laravel-nullable-fields": "Handles saving empty fields as null for Eloquent models (~1.5)",
-        "rap2hpoutre/laravel-log-viewer": "Laravel 5 log viewer (~0.11)",
         "simplesoftwareio/simple-qrcode": "An easy-to-use PHP QrCode generator (~2.0)",
         "spatie/laravel-backup": "A package to backup your Laravel app (~5.1)"
     }
