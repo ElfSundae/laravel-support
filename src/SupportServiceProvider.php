@@ -3,6 +3,8 @@
 namespace ElfSundae\Support;
 
 use Carbon\Carbon;
+use ReflectionClass;
+use Illuminate\Console\Command;
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
@@ -16,7 +18,9 @@ class SupportServiceProvider extends ServiceProvider
     {
         Carbon::setLocale('zh');
 
-        $this->registerCommands();
+        if ($this->app->runningInConsole()) {
+            $this->registerCommands();
+        }
     }
 
     /**
@@ -26,10 +30,18 @@ class SupportServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Console\IdeHelperGenerateCommand::class,
-            ]);
+        $commands = collect($this->app['files']->files(__DIR__.'/Console'))
+            ->map(function ($fileInfo) {
+                return __NAMESPACE__.'\\Console\\'.$fileInfo->getBasename('.php');
+            })
+            ->filter(function ($command) {
+                return is_subclass_of($command, Command::class)
+                    && ! (new ReflectionClass($command))->isAbstract();
+            })
+            ->all();
+
+        if ($commands) {
+            $this->commands($commands);
         }
     }
 
