@@ -19,7 +19,7 @@
         "elfsundae/laravel-apps": "~0.1",
         "elfsundae/laravel-agent": "~2.2",
         "elfsundae/laravel-api": "~1.7",
-        "elfsundae/laravel-gravatar": "~2.1",
+        "elfsundae/laravel-gravatar": "~2.2",
         "guzzlehttp/guzzle": "~6.3",
         "elfsundae/httpclient": "~1.1",
         "elfsundae/laravel-datatables": "~2.5",
