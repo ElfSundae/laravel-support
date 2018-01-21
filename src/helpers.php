@@ -65,7 +65,7 @@ if (! function_exists('active')) {
     /**
      * Return "active" if the current request URI matches the given patterns.
      *
-     * @param  dynamic  $patterns
+     * @param  string  ...$patterns
      * @return string
      */
     function active(...$patterns)
