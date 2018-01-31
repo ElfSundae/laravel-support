@@ -16,7 +16,7 @@
         "php": ">=7.1.0",
         "laravel/framework": "5.5.*",
         "doctrine/dbal": "~2.6",
-        "elfsundae/laravel-apps": "~0.1",
+        "elfsundae/laravel-apps": "~0.2",
         "elfsundae/laravel-agent": "~2.2",
         "elfsundae/laravel-api": "~1.7",
         "elfsundae/laravel-gravatar": "~2.2",
