@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the service provider.
      *
