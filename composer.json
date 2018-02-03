@@ -48,15 +48,17 @@
     },
     "extra": {
         "laravel": {
+            "dont-discover": [
+                "maatwebsite/excel",
+                "rap2hpoutre/laravel-log-viewer"
+            ],
             "providers": [
                 "ElfSundae\\Support\\SupportServiceProvider"
             ],
             "aliases": {
-                "Support": "ElfSundae\\Support\\Facades\\Support"
-            },
-            "dont-discover": [
-                "rap2hpoutre/laravel-log-viewer"
-            ]
+                "Support": "ElfSundae\\Support\\Facades\\Support",
+                "Excel": "Maatwebsite\\Excel\\Facades\\Excel"
+            }
         }
     },
     "suggest": {
